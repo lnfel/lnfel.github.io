@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		%sveltekit.head%
+        <!-- PRELOAD -->
+        <link rel="preload" href="%sveltekit.assets%/font/Sculpin.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" as="style" href="%sveltekit.assets%/css/font.css">
+        <link rel="preload" as="style" href="%sveltekit.assets%/css/main.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="%sveltekit.assets%/css/font.css">
+        <link rel="stylesheet" href="%sveltekit.assets%/css/main.css">
+	</head>
+	<body data-sveltekit-preload-data="hover" class="bg-indigo-50 dark:text-white dark:bg-slate-900">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

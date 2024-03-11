@@ -1,4 +1,6 @@
 <script>
+    import { base } from "$app/paths"
+    
     /**
      * Thinking on ways to solve GLITCH effects
      * - AdamArgyle
@@ -48,7 +50,7 @@
     }
 </script>
 
-<a href="/" draggable="false" class="logo group md:-rotate-90 text-indigo-500 dark:text-indigo-200 outline-none {$$props.class}">
+<a href="{base}/" draggable="false" class="logo group md:-rotate-90 text-indigo-500 dark:text-indigo-200 outline-none {$$props.class}">
     <h1 class="logo-text uppercase text-right font-zenless-logo tracking-wider whitespace-nowrap italic px-4 transition-all duration-300">lnfel's Room</h1>
 </a>
 

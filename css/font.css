@@ -1,0 +1,46 @@
+/* https://g-witch.net/ */
+/* https://use.typekit.net/qxy3zkw.css */
+/* Great for Japanese type */
+@font-face {
+    font-family: "dashiell-fine";
+    /* src: url("https: //use.typekit.net/af/615f99/00000000000000007735f0db/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"); */
+    src: url("/font/Dashiell-Fine.woff2") format("woff2");
+    font-display: auto;
+    font-style: normal;
+    font-weight: 500;
+    font-stretch: normal;
+}
+/* Great for English type,  */
+@font-face {
+    font-family: "sculpin";
+    /* src: url("https: //use.typekit.net/af/d4355e/00000000000000007735eee2/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"); */
+    src: url("/font/Sculpin.woff2") format("woff2");
+    font-display: swap;
+    font-style: normal;
+    font-weight: 500;
+    font-stretch: normal;
+}
+/* Cyberpunk font */
+@font-face {
+    font-family: "cyberpunk";
+    src: url("/font/Cyberpunk-Regular.ttf") format("truetype");
+    font-display: swap;
+    font-style: normal;
+    font-weight: 500;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: "zenless-logo";
+    src: url("/font/Zenless_1.woff2") format("woff2");
+    font-display: swap;
+}
+@font-face {
+    font-family: "zenless-title";
+    src: url("/font/Zenless_2.woff2") format("woff2");
+    font-display: swap;
+}
+@font-face {
+    font-family: "zenless-copy";
+    src: url("/font/Zenless_3.woff2") format("woff2");
+    font-display: swap;
+}

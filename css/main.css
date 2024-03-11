@@ -1,0 +1,22 @@
+.font-sculpin {
+    font-family: 'sculpin', sans-serif;
+}
+.font-zenless-logo {
+    font-family: 'zenless-logo', sans-serif;
+}
+.font-zenless-title {
+    font-family: 'zenless-title', sans-serif;
+}
+.font-zenless-copy {
+    font-family: 'zenless-copy', sans-serif;
+}
+
+.menu {
+    height: calc(100vh - 64px);
+}
+
+@media (min-width: 768px) {
+    .menu {
+        height: 100vh;
+    }
+}

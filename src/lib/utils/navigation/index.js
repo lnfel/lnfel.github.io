@@ -34,19 +34,19 @@ export function scrollToHash({ hash = '', scrollElement }) {
             //     left: anchor?.offsetLeft ?? 0,
             //     behavior: 'smooth'
             // })
-            const anchorDelta = anchor?.getBoundingClientRect().left ?? 0
+            const anchorDelta = anchor?.offsetLeft ?? 0
             const maxDelta = scrollElement.getBoundingClientRect().width
             const percentage = Math.min(Math.max((anchorDelta / maxDelta) * -100, -75), 0)
-            console.log({
-                anchorDelta,
-                maxDelta,
-                percentage
-            })
+
+            scrollElement.dataset.scrolledAmount = (anchorDelta / 2).toString()
+            scrollElement.dataset.percentage = percentage.toString()
+
             scrollElement.animate({
                 transformOrigin: 'center',
                 left: `${Math.abs(percentage)}%`,
                 transform: `translate(${percentage}%, 0% )`
             }, { duration: 1000, fill: "forwards" })
+
             // window.scrollTo({
             //     left: anchor.offsetLeft ?? 0,
             //     behavior: 'smooth'

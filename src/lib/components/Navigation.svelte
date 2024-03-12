@@ -17,12 +17,12 @@
         
         if (!document.startViewTransition) return
 
-        return new Promise(resolve => {
-            document.startViewTransition(async () => {
-                resolve()
-                await navigation.complete
-            })
-        })
+        // return new Promise(resolve => {
+        //     document.startViewTransition(async () => {
+        //         resolve()
+        //         await navigation.complete
+        //     })
+        // })
     })
 
     onMount(() => {

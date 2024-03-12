@@ -139,7 +139,8 @@
     </button>
 </Header>
 
-<main class="h-screen md:static md:flex md:items-stretch md:h-full overflow-hidden will-change-scroll">
+<!-- overflow-hidden -->
+<main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] h-screen md:static md:flex md:items-stretch md:h-full will-change-scroll">
     <slot />
 </main>
 

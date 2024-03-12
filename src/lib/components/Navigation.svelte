@@ -31,16 +31,33 @@
          * Horizontal Scrolling using mousewheel/trackpad
          */
         if (main instanceof HTMLElement) {
-            main.addEventListener('wheel', (event) => {
+            window.addEventListener('wheel', (event) => {
                 const mediumScreen = window.matchMedia("(min-width: 768px)")
-                event.preventDefault()
-                // console.log('main wheel event: ', {
-                //     deltaY: event.deltaY
-                // })
-                mediumScreen.matches
-                    ? main.scrollLeft += event.deltaY
-                    : main.scrollTop += event.deltaY
-            })
+                if (mediumScreen.matches) {
+                    event.preventDefault()
+                    main.dataset.scrolledAmount = (Number(main.dataset.scrolledAmount) + event.deltaY).toString()
+                    const wheelDelta = Number(main.dataset.scrolledAmount)
+                    const maxDelta = main.getBoundingClientRect().width / 2 // main.getBoundingClientRect().width
+                    console.log('maxDelta: ', maxDelta)
+
+                    if (wheelDelta < 0) main.dataset.scrolledAmount = '0';
+                    if (wheelDelta >= maxDelta) main.dataset.scrolledAmount = maxDelta.toString();
+                    const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -75), 0)
+
+                    main.dataset.percentage = percentage.toString()
+
+                    main.animate({
+                        transformOrigin: 'center',
+                        left: `${Math.abs(percentage)}%`,
+                        transform: `translate(${percentage}%, 0% )`
+                    }, { duration: 1000, fill: "forwards" })
+                }
+                // event.preventDefault()
+                // This one requires overflow-hidden on main element and is not smooth on Windows OS
+                // mediumScreen.matches
+                //     ? main.scrollLeft += event.deltaY
+                //     : main.scrollTop += event.deltaY
+            }, { passive: false })
         }
         /**
          * Hash navigation

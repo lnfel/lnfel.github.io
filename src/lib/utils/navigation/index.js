@@ -30,12 +30,33 @@ export function scrollToHash({ hash = '', scrollElement }) {
         const mediumScreen = window.matchMedia("(min-width: 768px)")
         console.log('scrollToHash: ', { anchor, mediumScreen })
         if (mediumScreen.matches) {
-            scrollElement.scrollTo({
-                left: anchor?.offsetLeft ?? 0,
-                behavior: 'smooth'
+            // scrollElement.scrollTo({
+            //     left: anchor?.offsetLeft ?? 0,
+            //     behavior: 'smooth'
+            // })
+            const anchorDelta = anchor?.getBoundingClientRect().left ?? 0
+            const maxDelta = scrollElement.getBoundingClientRect().width
+            const percentage = Math.min(Math.max((anchorDelta / maxDelta) * -100, -75), 0)
+            console.log({
+                anchorDelta,
+                maxDelta,
+                percentage
             })
+            scrollElement.animate({
+                transformOrigin: 'center',
+                left: `${Math.abs(percentage)}%`,
+                transform: `translate(${percentage}%, 0% )`
+            }, { duration: 1000, fill: "forwards" })
+            // window.scrollTo({
+            //     left: anchor.offsetLeft ?? 0,
+            //     behavior: 'smooth'
+            // })
         } else {
-            scrollElement.scrollTo({
+            // scrollElement.scrollTo({
+            //     top: anchor?.offsetTop ?? 0,
+            //     behavior: 'smooth'
+            // })
+            window.scrollTo({
                 top: anchor?.offsetTop ?? 0,
                 behavior: 'smooth'
             })

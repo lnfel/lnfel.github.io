@@ -60,7 +60,7 @@
             <div class="project-grid h-[max-content] grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {#each projects as project}
                     <a href={project.imageURL} data-pswp-width="2500" data-pswp-height="1200" class="project-card w-full h-[max-content] relative overflow-hidden select-none outline-none border border-slate-500">
-                        <img src={project.imageURL} alt={project.alt} draggable="false" class="project-card-img w-full object-cover">
+                        <img loading="lazy" src={project.imageURL} alt={project.alt} draggable="false" class="project-card-img w-full object-cover">
                         <div class="project-card-title font-zenless-copy select-none px-4 py-4">
                             <div class="flex items-center justify-between">
                                 <a href={project.pageURL} class="project-internal-link text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">{project.title}</a>

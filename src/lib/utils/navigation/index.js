@@ -1,21 +1,25 @@
 import { pushState } from "$app/navigation"
 import { classToggle } from "$lib/utils"
 
-export const menuLinks = [
-    { text: 'Home', href: '/' },
-    { text: 'About', href: '#about' },
-    { text: 'Projects', href: '#projects' },
-    { text: 'Contact', href: '#contact' },
-    { text: 'Blog', href: '/blog' },
-]
-
-export const blogLinks = [
-    { text: 'Home', href: '/' },
-    { text: 'About', href: '/#about' },
-    { text: 'Projects', href: '/#projects' },
-    { text: 'Contact', href: '/#contact' },
-    { text: 'Blog', href: '/blog' },
-]
+/**
+ * @type {Record<String, { text: String, href: String }[]>}
+ */
+export const menu = {
+    '/': [
+        { text: 'Home', href: '/' },
+        { text: 'About', href: '#about' },
+        { text: 'Projects', href: '#projects' },
+        { text: 'Contact', href: '#contact' },
+        { text: 'Blog', href: '/blog' },
+    ],
+    '/blog': [
+        { text: 'Home', href: '/' },
+        { text: 'About', href: '/#about' },
+        { text: 'Projects', href: '/#projects' },
+        { text: 'Contact', href: '/#contact' },
+        { text: 'Blog', href: '/blog' },
+    ]
+}
 
 /**
  * Smooth scroll to anchor link's hash

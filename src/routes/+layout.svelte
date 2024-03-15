@@ -131,15 +131,13 @@
     <title>lnfel's Room</title>
 </svelte:head>
 
-<Navigation />
-
 <Header>
     <button on:click={toggleMenu} type="button" class="md:hidden text-tulip-tree-400 outline-none hover:bg-tulip-tree-400 focus:bg-tulip-tree-400 hover:text-slate-900 focus:text-slate-900 transition-colors p-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
     </button>
 </Header>
 
-<!-- overflow-hidden -->
+<!-- overflow-hidden is needed when scrolling with native scroll -->
 <main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] h-screen md:static md:flex md:items-stretch md:h-full will-change-scroll">
     <slot />
 </main>
@@ -147,13 +145,6 @@
 <!-- <LamyDebugbar data={debug} open /> -->
 
 <style>
-    :global(.menu) {
-        background: radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
-            url(/img/stellar-stellar.jpeg);
-        background-size: 4px 4px, cover;
-        backdrop-filter: saturate(50%) blur(4px);
-        background-position: center, bottom left;
-    }
     :global(.lamy-debugbar) {
         z-index: 30;
         /* opacity: 0.1; */
@@ -162,20 +153,5 @@
     :global(.lamy-debugbar:hover),
     :global(.lamy-debugbar:has(button:focus)) {
         opacity: 1;
-    }
-
-    /* :global(section:nth-of-type(1)) {
-        background-color: white;
-    } */
-
-    @media (min-width: 768px) {
-        :global(.menu) {
-            /* linear-gradient(to right, rgb(15 23 42 / 1) 0%, transparent 5%, transparent 80%, rgb(15 23 42 / 1) 100%), */
-            background: linear-gradient(to right, transparent 80%, rgb(15 23 42 / 1) 100%),
-                radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
-                url(/img/stellar-stellar.jpeg);
-            background-size: cover, 4px 4px, cover;
-            backdrop-filter: saturate(50%) blur(4px);
-        }
     }
 </style>

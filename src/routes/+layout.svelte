@@ -2,16 +2,13 @@
     import "$lib/app.css"
     import { onMount } from "svelte"
     import { page } from "$app/stores"
-    import { writable } from "svelte/store"
+
     import { classToggle } from "$lib/utils"
     import { decryptAnimation } from "$lib/utils"
     import { normalizeWheel } from "$lib/utils/dom"
 
-    import Navigation from "$lib/components/Navigation.svelte"
     import Header from "$lib/components/Header.svelte"
     import LamyDebugbar from "lamy-debugbar"
-
-    let menuOpen = writable(false)
     
     function toggleMenu() {
         const nav = document.querySelector('nav.menu')
@@ -100,17 +97,6 @@
                         objectPosition: `${nextPercentage + 100}% center`
                     }, { duration: 1200, fill: "forwards" })
                 })
-
-                // console.log('Parallax onmousemove: ', {
-                //     clientX: event.clientX,
-                //     mouseDelta,
-                //     maxDelta,
-                //     percentage,
-                //     nextPercentage,
-                //     parallax,
-                //     parallaxCardImages,
-                // })
-                console.log('offsetLeft: ', parallax.offsetLeft, parallax.getBoundingClientRect().left)
             }
 
             parallax.onmouseup = () => {
@@ -123,7 +109,8 @@
     $: debug = {
         scroll: {
 
-        }
+        },
+        page: $page
     }
 </script>
 

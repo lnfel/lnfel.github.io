@@ -105,7 +105,7 @@
     })
 </script>
 
-<div class="stellar-container fixed inset-0 md:relative w-screen h-screen overflow-hidden shrink-0 z-20">
+<div class="stellar-container fixed inset-0 md:relative w-screen h-[100dvh] overflow-hidden shrink-0 z-20">
     <div class="stellar-bg h-full relative">
         <div class="stellar-colored"></div>
         <img src="/img/ui/stellar-bg/grayscale.webp" alt="" class="stellar-grayscale hidden md:block">

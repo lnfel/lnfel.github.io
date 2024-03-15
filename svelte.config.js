@@ -15,7 +15,8 @@ const config = {
         //     base: dev ? '' : '',
         // },
         prerender: {
-            handleMissingId: 'warn'
+            handleMissingId: 'warn',
+            handleHttpError: 'warn'
         },
 	},
     preprocess: sequence([

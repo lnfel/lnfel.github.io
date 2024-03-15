@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-        "postbuild": "node ./scripts/postbuild.js",
+		"postbuild": "node ./scripts/postbuild.js",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
@@ -48,6 +48,7 @@
 		"@tweakpane/core": "^2.0.3",
 		"crayon.js": "^3.3.3",
 		"lamy-debugbar": "^0.3.1",
+		"photoswipe": "^5.4.3",
 		"three": "^0.161.0",
 		"tweakpane": "^4.0.3"
 	}

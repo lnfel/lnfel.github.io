@@ -113,6 +113,9 @@
         opacity: 0;
         transition: 300ms opacity 500ms ease-in-out;
     }
+    :global(.stellar-container:not(:has(.menu-container.show))) {
+        pointer-events: none;
+    }
     .stellar-colored {
         position: absolute;
         inset: 0;
@@ -184,6 +187,9 @@
         }
         .stellar-container {
             opacity: 1;
+        }
+        :global(.stellar-container:not(:has(.menu-container.show))) {
+            pointer-events: all;
         }
         .stellar-colored {
             background: linear-gradient(to right, transparent 80%, rgb(15 23 42 / 1) 100%),

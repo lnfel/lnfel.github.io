@@ -7,7 +7,6 @@
     import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
     import { classToggle } from "$lib/utils"
-    import { decryptAnimation } from "$lib/utils"
     import { normalizeWheel } from "$lib/utils/dom"
 
     import Header from "$lib/components/Header.svelte"
@@ -28,8 +27,6 @@
     }
 
     onMount(async () => {
-        decryptAnimation({ target: '.menu-link' })
-
         const main = document.querySelector('main')
         const projects = document.querySelector('#projects')
         const parallax = document.querySelector('#parallax')

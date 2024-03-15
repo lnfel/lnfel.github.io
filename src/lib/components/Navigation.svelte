@@ -3,6 +3,7 @@
     import { page } from "$app/stores"
     import { base } from "$app/paths"
     import { onNavigate } from "$app/navigation"
+    import { decryptAnimation } from "$lib/utils"
     import { scrollToHash, navigateToHash, onHashChange } from "$lib/utils/navigation"
     import { menu } from "$lib/utils/navigation"
 
@@ -31,6 +32,8 @@
     })
 
     onMount(() => {
+        decryptAnimation({ target: '.menu-link' })
+        
         const main = document.querySelector('main')
         /**
          * Horizontal Scrolling using mousewheel/trackpad

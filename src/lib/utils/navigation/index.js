@@ -79,7 +79,7 @@ export function navigateToHash({ scrollElement }) {
         const anchorID = activeURL.hash.replace('#', '')
 
         // toggle nav container on small screens
-        const nav = document.querySelector('nav.menu')
+        const nav = document.querySelector('.menu-container')
         const mediumScreen = window.matchMedia("(min-width: 768px)")
         console.log('navigateToHash: ', {
             activeURL,
@@ -88,7 +88,7 @@ export function navigateToHash({ scrollElement }) {
             mediumScreen
         })
         if (nav && !mediumScreen.matches) {
-            classToggle(nav, "hidden")
+            classToggle(nav, "show")
         }
 
         // scroll and append history

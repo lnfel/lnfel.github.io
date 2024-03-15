@@ -2,15 +2,15 @@ import { pushState } from "$app/navigation"
 import { classToggle } from "$lib/utils"
 
 /**
- * @type {Record<String, { text: String, href: String }[]>}
+ * @type {Record<String, { text: String, href: String, disabled?: Boolean }[]>}
  */
 export const menu = {
     '/': [
-        { text: 'Home', href: '/' },
+        // { text: 'Home', href: '/' },
         { text: 'About', href: '#about' },
         { text: 'Projects', href: '#projects' },
         { text: 'Contact', href: '#contact' },
-        // { text: 'Blog', href: '/blog' },
+        { text: 'Blog', href: '/blog', disabled: true },
     ],
     '/blog': [
         { text: 'Home', href: '/' },

@@ -113,8 +113,8 @@
     <div class="menu-container absolute inset-0 z-30">
         <nav class="menu w-full h-full md:block">
             <div class="menu-links-container h-full flex flex-col gap-2 px-4 py-6 pt-36 md:p-20 md:pl-[12rem]">
-                {#each menu[(new URL($page.url)).pathname] as { text, href }}
-                    <Navlink href="{base}{href}" {text} />
+                {#each menu[(new URL($page.url)).pathname] as { text, href, disabled }}
+                    <Navlink href="{base}{href}" {text} {disabled} />
                 {/each}
             </div>
         </nav>

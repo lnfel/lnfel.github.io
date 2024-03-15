@@ -99,7 +99,6 @@
 
             parallax.onmousedown = event => {
                 parallax.dataset.mouseDownAt = event.clientX.toString()
-                console.log('Parallax mouse at: ', parallax.dataset.mouseDownAt)
             }
 
             parallax.onmousemove = event => {

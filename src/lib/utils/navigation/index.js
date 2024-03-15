@@ -27,12 +27,10 @@ export const menu = {
  * @param {{ hash?: String, scrollElement: HTMLElement | null }} ScrollToHashParams
  */
 export function scrollToHash({ hash = '', scrollElement }) {
-    console.log('scrollToHash: ', { hash, scrollElement })
     if (scrollElement instanceof HTMLElement) {
         const anchorID = hash.replace('#', '')
         const anchor = document.getElementById(anchorID)
         const mediumScreen = window.matchMedia("(min-width: 768px)")
-        console.log('scrollToHash: ', { anchor, mediumScreen })
         if (mediumScreen.matches) {
             // scrollElement.scrollTo({
             //     left: anchor?.offsetLeft ?? 0,
@@ -81,12 +79,6 @@ export function navigateToHash({ scrollElement }) {
         // toggle nav container on small screens
         const nav = document.querySelector('.menu-container')
         const mediumScreen = window.matchMedia("(min-width: 768px)")
-        console.log('navigateToHash: ', {
-            activeURL,
-            anchorID,
-            nav,
-            mediumScreen
-        })
         if (nav && !mediumScreen.matches) {
             classToggle(nav, "show")
         }
@@ -108,7 +100,6 @@ export function navigateToHash({ scrollElement }) {
  */
 export function onHashChange({ scrollElement }) {
     return (event) => {
-        console.log('onhashchange: ', event)
         const url = new URL(event.newURL)
         scrollToHash({ hash: url?.hash, scrollElement })
     }

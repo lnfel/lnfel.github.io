@@ -46,7 +46,6 @@
                     main.dataset.scrolledAmount = (Number(main.dataset.scrolledAmount) + event.deltaY).toString()
                     const wheelDelta = Number(main.dataset.scrolledAmount)
                     const maxDelta = main.getBoundingClientRect().width / 2 // main.getBoundingClientRect().width
-                    console.log('maxDelta: ', maxDelta)
 
                     if (wheelDelta < 0) main.dataset.scrolledAmount = '0';
                     if (wheelDelta >= maxDelta) main.dataset.scrolledAmount = maxDelta.toString();

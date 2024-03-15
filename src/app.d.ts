@@ -10,6 +10,15 @@ declare global {
             hash?: string
             pathname?: string
         }
+
+        type Project = {
+            title: string
+            description: string
+            imageURL: string
+            alt: string
+            pageURL: string
+            externalURL: string
+        }
 	}
 }
 

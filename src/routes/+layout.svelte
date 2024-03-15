@@ -1,7 +1,10 @@
 <script>
     import "$lib/app.css"
+    import 'photoswipe/style.css'
+
     import { onMount } from "svelte"
     import { page } from "$app/stores"
+    import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
     import { classToggle } from "$lib/utils"
     import { decryptAnimation } from "$lib/utils"
@@ -30,44 +33,71 @@
         const main = document.querySelector('main')
         const projects = document.querySelector('#projects')
         const parallax = document.querySelector('#parallax')
+        const projectGrid = document.querySelector('.project-grid')
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '.project-grid',
+            children: '.project-card',
+            pswpModule: () => import('photoswipe')
+        })
+
+        lightbox.init()
+
+        if (projectGrid instanceof HTMLElement) {
+            projectGrid.onwheel = event => {
+                event.stopPropagation()
+            }
+        }
 
         if (parallax instanceof HTMLElement && main instanceof HTMLElement && projects instanceof HTMLElement) {
-            parallax.onwheel = event => {
-                if (main.scrollLeft === projects.offsetLeft) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                    const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import('$lib/utils/dom').LegacyWheelEvent} */ (event))
+            main.onwheel = event => {
+                // if (main.scrollLeft === projects.offsetLeft && event.deltaY > 0 && parallax.dataset.percentage !== '-100' || main.scrollLeft === projects.offsetLeft && event.deltaY < 0 && parallax.dataset.percentage !== '0') {
+                    // event.preventDefault()
+                    // event.stopPropagation()
+                    // const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import('$lib/utils/dom').LegacyWheelEvent} */ (event))
                     
-                    parallax.dataset.scrolledAmount = (Number(parallax.dataset.scrolledAmount) + normalizedWheel.pixelY).toString()
-                    const wheelDelta = Number(parallax.dataset.scrolledAmount)
-                    const maxDelta = parallax.getBoundingClientRect().width / 2
-                    if (wheelDelta < 0) parallax.dataset.scrolledAmount = '0';
-                    if (wheelDelta >= maxDelta) parallax.dataset.scrolledAmount = maxDelta.toString();
-                    const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -100), 0)
+                    // parallax.dataset.scrolledAmount = (Number(parallax.dataset.scrolledAmount) + normalizedWheel.pixelY).toString()
+                    // const wheelDelta = Number(parallax.dataset.scrolledAmount)
+                    // const maxDelta = parallax.getBoundingClientRect().width / 2
+                    // if (wheelDelta < 0) parallax.dataset.scrolledAmount = '0';
+                    // if (wheelDelta >= maxDelta) parallax.dataset.scrolledAmount = maxDelta.toString();
+                    // const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -100), 0)
+
+                    // parallax.dataset.percentage = percentage.toString()
                     
-                    if (wheelDelta < maxDelta) {
-                        const parallaxCardImages = /** @type {NodeListOf<HTMLImageElement>} */ (parallax.querySelectorAll('.parallax-card-img'))
-                        parallaxCardImages.forEach((image) => {
-                            image.animate({
-                                objectPosition: `${percentage + 100}% center`
-                            }, { duration: 1200, fill: "forwards" })
-                        })
-                    }
+                    // if (wheelDelta < maxDelta) {
+                    //     const parallaxCardImages = /** @type {NodeListOf<HTMLImageElement>} */ (parallax.querySelectorAll('.parallax-card-img'))
+                    //     parallaxCardImages.forEach((image) => {
+                    //         image.animate({
+                    //             objectPosition: `${percentage + 100}% center`
+                    //         }, { duration: 1200, fill: "forwards" })
+                    //     })
+                    // }
 
-                    parallax.animate({
-                        transformOrigin: 'center',
-                        left: `${Math.abs(percentage)}%`,
-                        transform: `translate(${percentage}%, 0% )`
-                    }, { duration: 1200, fill: "forwards" })
+                    // parallax.animate({
+                    //     transformOrigin: 'center',
+                    //     left: `${Math.abs(percentage)}%`,
+                    //     transform: `translate(${percentage}%, 0% )`
+                    // }, { duration: 1200, fill: "forwards" })
 
-                    updateDebugValues({
-                        scroll: {
-                            wheelDelta,
-                            maxDelta,
-                            percentage
-                        }
-                    })
-                }
+                    // updateDebugValues({
+                    //     scroll: {
+                    //         wheelDelta,
+                    //         maxDelta,
+                    //         percentage,
+                    //         dataPercentage: parallax.dataset.percentage,
+                    //         deltaY: event.deltaY,
+                    //         scrollingUp: event.deltaY > 0,
+                    //         scrollingDown: event.deltaY < 0
+                    //     }
+                    // })
+                // } else {
+                    // const mediumScreen = window.matchMedia("(min-width: 768px)")
+                    // event.preventDefault()
+                    // mediumScreen.matches
+                    //     ? main.scrollLeft += event.deltaY
+                    //     : main.scrollTop += event.deltaY
+                // }
             }
 
             parallax.onmousedown = event => {

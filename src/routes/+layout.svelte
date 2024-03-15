@@ -11,9 +11,9 @@
     import LamyDebugbar from "lamy-debugbar"
     
     function toggleMenu() {
-        const nav = document.querySelector('nav.menu')
+        const nav = document.querySelector('.menu-container')
         if (nav) {
-            classToggle(nav, "hidden")
+            classToggle(nav, "show")
         }
     }
 

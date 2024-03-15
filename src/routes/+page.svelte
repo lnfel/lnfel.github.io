@@ -14,6 +14,14 @@
             externalURL: 'https://github.com/lnfel/aerial'
         },
         {
+            title: 'Lamy Debugbar',
+            description: 'An elegant svelte debugbar inspired by laravel debugbar.',
+            imageURL: '/img/projects/lamy-debugbar.webp',
+            alt: 'Lamy Debugbar demo page',
+            pageURL: '/projects/lamy-debugbar',
+            externalURL: 'https://github.com/lnfel/lamy-debugbar'
+        },
+        {
             title: 'RGMTSI',
             description: 'Company portfolio of an industrial manufacturing equipment supplier.',
             imageURL: '/img/projects/rgmtsi.webp',
@@ -50,12 +58,12 @@
         <div class="max-h-[24rem] overflow-y-scroll">
             <div class="project-grid h-[max-content] grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {#each projects as project}
-                    <a href={project.imageURL} data-pswp-width="2500" data-pswp-height="1200" class="project-card w-full h-[max-content] relative overflow-hidden select-none outline-none">
+                    <a href={project.imageURL} data-pswp-width="2500" data-pswp-height="1200" class="project-card w-full h-[max-content] relative overflow-hidden select-none outline-none border border-slate-500">
                         <img src={project.imageURL} alt={project.alt} draggable="false" class="project-card-img w-full object-cover">
                         <div class="project-card-title font-zenless-copy select-none px-4 py-4">
                             <div class="flex items-center justify-between">
                                 <a href={project.pageURL} class="project-internal-link text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">{project.title}</a>
-                                <a href={project.externalURL} draggable="false" class="project-external-link outline-none hover:text-tulip-tree-400 focus:text-tulip-tree-400">
+                                <a href={project.externalURL} target="_blank" draggable="false" class="project-external-link outline-none hover:text-tulip-tree-400 focus:text-tulip-tree-400">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-out-up-right"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>
                                 </a>
                             </div>
@@ -107,6 +115,14 @@
                 </a>
             </div>
         </div> -->
+    </div>
+</section>
+
+<section id="contact" class="w-screen h-screen shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
+    <div class="md:w-[7rem]"></div>
+    <div class="section-content px-6 space-y-4">
+        <h1 class="font-zenless-title text-4xl md:text-5xl py-2">Contact</h1>
+        <p class="font-zenless-copy text-2xl max-w-[60ch]">Welcome to my personal space, feel free to look around or scroll a bit more to see my recent projects.</p>
     </div>
 </section>
 

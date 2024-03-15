@@ -73,6 +73,16 @@
             link.onclick = /** @type {((this: GlobalEventHandlers, ev: MouseEvent) => any) | null} */ (navigateToHash({ scrollElement: main }))
         })
 
+        const links = ['.project-internal-link', '.project-external-link']
+        links.forEach((link) => {
+            const nodelist = /** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll(link))
+            nodelist.forEach((element) => {
+                element.onclick = (event) => {
+                    event.stopPropagation()
+                }
+            })
+        })
+
         let hash = window.location.hash
         /**
          * These are black list for hashes, we trigger scroll onMount

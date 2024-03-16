@@ -19,6 +19,12 @@ declare global {
             pageURL: string
             externalURL: string
         }
+
+        type GenericList = {
+            name: string
+            bgColor: string
+            textColor?: string
+        }
 	}
 }
 

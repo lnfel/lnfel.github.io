@@ -30,7 +30,6 @@
         const main = document.querySelector('main')
         const projects = document.querySelector('#projects')
         const parallax = document.querySelector('#parallax')
-        const projectGrid = document.querySelector('.project-grid')
 
         const lightbox = new PhotoSwipeLightbox({
             gallery: '.project-grid',
@@ -39,12 +38,6 @@
         })
 
         lightbox.init()
-
-        if (projectGrid instanceof HTMLElement) {
-            projectGrid.onwheel = event => {
-                event.stopPropagation()
-            }
-        }
 
         if (parallax instanceof HTMLElement && main instanceof HTMLElement && projects instanceof HTMLElement) {
             main.onwheel = event => {

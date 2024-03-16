@@ -1,54 +1,85 @@
 <script>
+    import { onMount } from "svelte"
     import { base } from "$app/paths"
+
+    import { projects, languages, metaFramework, tooling } from "$lib/content"
 
     import Navigation from "$lib/components/Navigation.svelte"
     import Contact from "$lib/components/Contact.svelte"
 
-    /** @type {App.Project[]} */
-    const projects = [
-        {
-            title: 'Aerial',
-            description: 'An app that extracts dominant colors in images and documents using k-means clustering algorithm.',
-            imageURL: '/img/projects/aerial.webp',
-            alt: 'Aerial demo',
-            pageURL: '/projects/aerial',
-            externalURL: 'https://github.com/lnfel/aerial'
-        },
-        {
-            title: 'Lamy Debugbar',
-            description: 'An elegant svelte debugbar inspired by laravel debugbar.',
-            imageURL: '/img/projects/lamy-debugbar.webp',
-            alt: 'Lamy Debugbar demo page',
-            pageURL: '/projects/lamy-debugbar',
-            externalURL: 'https://github.com/lnfel/lamy-debugbar'
-        },
-        {
-            title: 'RGMTSI',
-            description: 'Company portfolio of an industrial manufacturing equipment supplier.',
-            imageURL: '/img/projects/rgmtsi.webp',
-            alt: 'Machinery company website',
-            pageURL: '/projects/rgmtsi',
-            externalURL: 'https://rgmtsinc.com/'
-        },
-        {
-            title: 'Vasta',
-            description: 'Company portfolio of a travel agency in Batanes.',
-            imageURL: '/img/projects/vasta.webp',
-            alt: 'Vasta Travel and Tours company website',
-            pageURL: '/projects/vasta',
-            externalURL: 'https://lnfel.github.io/Vasta/'
-        },
-    ]
+    onMount(() => {
+        const scrollSelector = ['.project-grid', '#about .section-content']
+
+        scrollSelector.forEach((selector) => {
+            const element = document.querySelector(selector)
+            if (element instanceof HTMLElement) {
+                element.onwheel = event => {
+                    event.stopPropagation()
+                }
+            }
+        })
+    })
 </script>
 
 <Navigation />
 
 <section id="about" class="w-screen h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
     <div class="md:w-[7rem]"></div>
-    <div class="section-content px-6 space-y-4">
-        <h1 class="font-zenless-title text-4xl md:text-5xl py-2">About</h1>
-        <!-- <p class="font-zenless-copy text-2xl">Hi my name is Dale and this is how I fell in love with web development.</p> -->
-        <p class="font-zenless-copy text-2xl max-w-[60ch]">Welcome to my personal space, feel free to look around or scroll a bit more to see my recent projects.</p>
+    <div class="section-content relative h-[24rem] overflow-y-auto px-6 space-y-10">
+        <article class="space-y-2">
+            <h1 class="sticky top-0 z-10 w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">About</h1>
+            <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
+                Hey there, I'm Dale and welcome to my room. Feel free to look around or scroll a bit more to see my recent projects.
+            </p>
+        </article>
+
+        <article class="space-y-2">
+            <h2 class="sticky top-0 z-10 w-full font-zenless-title text-2xl md:text-3xl dark:bg-slate-900 py-2">Technologies and development tools I am familiar with</h2>
+            <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
+                Here are a list of languages and technologies that I am familiar and worked with in the past up until now:
+            </p>
+            <div class="pt-2 space-y-2">
+                <h3 class="font-zenless-title text-lg">Languages</h3>
+                <ul class="font-zenless-copy flex flex-wrap items-center gap-2 text-xl leading-normal max-w-[60ch]">
+                    {#each languages as language}
+                        <li class="flex items-center gap-2 leading-none {language.bgColor} {language.textColor} px-2 py-1">
+                            <span>{ language.name }</span>
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+            <div class="pt-2 space-y-2">
+                <h3 class="font-zenless-title text-lg">Meta framework</h3>
+                <ul class="font-zenless-copy flex flex-wrap items-center gap-2 text-xl leading-normal max-w-[60ch]">
+                    {#each metaFramework as framework}
+                        <li class="flex items-center gap-2 leading-none {framework.bgColor} {framework.textColor} px-2 py-1">
+                            <span>{ framework.name }</span>
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+            <div class="pt-2 space-y-2">
+                <h3 class="font-zenless-title text-lg">Tooling</h3>
+                <ul class="font-zenless-copy flex flex-wrap items-center gap-2 text-xl leading-normal max-w-[60ch]">
+                    {#each tooling as tool}
+                        <li class="flex items-center gap-2 leading-none {tool.bgColor} {tool.textColor} px-2 py-1">
+                            <span>{ tool.name }</span>
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+        </article>
+
+        <article class="space-y-2">
+            <h2 class="sticky top-0 z-10 w-full font-zenless-title text-2xl md:text-3xl dark:bg-slate-900 py-2">How I fell in love with web development</h2>
+            <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
+                It started as a hobby in 2010 writing CSS to customize Friendster profiles then came a thirst for something more.
+                I found myself reading about HTML, CSS, JQuery and how to write an index.html file using notepad (yes JQuery is learnt before JavaScript).
+                Inspired by what I read and saw in CSS-Tricks and Codepen, it kept me going.
+                Later I learned Ruby language and it's framework Ruby on Rails. Obviously I went back writing plain html files because I could not comprehend MVC yet.
+                Fast-forward in 2018 where I finally decided to have web development as career for a lifetime.
+            </p>
+        </article>
     </div>
 </section>
 

@@ -52,7 +52,7 @@
     </div>
 </section>
 
-<section id="projects" class="w-screen h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
+<section id="projects" class="w-screen h-screen shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
     <div class="md:w-[7rem]"></div>
     <div class="section-content relative w-full px-6 space-y-4">
         <h1 class="sticky top-0 z-10 w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">Projects</h1>
@@ -119,7 +119,7 @@
     </div>
 </section>
 
-<section id="contact" class="w-screen h-[100dvh] shrink-0 md:flex px-4 py-6 pt-[9rem] md:p-20">
+<section id="contact" class="w-screen h-screen shrink-0 md:flex px-4 py-6 pt-[9rem] md:p-20">
     <div class="md:w-[7rem]"></div>
     <div class="section-content px-6 space-y-4">
         <h1 class="font-zenless-title text-4xl md:text-5xl py-2">Contact</h1>

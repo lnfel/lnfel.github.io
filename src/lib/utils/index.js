@@ -70,3 +70,10 @@ export function decryptAnimation({ target }) {
 export function classToggle(element, classnames) {
     classnames.split(" ").map(string => element.classList.toggle(string))
 }
+
+/**
+ * @param {HTMLElement} element 
+ */
+export function copyTextFromElement(element) {
+    navigator.clipboard.writeText(element.innerText)
+}

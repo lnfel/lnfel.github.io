@@ -294,20 +294,28 @@
     }
 
     /* Contacts */
-    :global(.contact.github:has(.contact-link:hover) > svg circle),
-    :global(.contact.github:has(.contact-link:focus) > svg circle) {
+    :global(.contact.github:has(.contact-link:hover) > div svg circle),
+    :global(.contact.github:has(.contact-link:focus) > div svg circle),
+    :global(.contact.github:has(button:hover) > div svg circle),
+    :global(.contact.github:has(button:focus) > div svg circle) {
         display: block;
     }
-    :global(.contact.github:has(.contact-link:hover) > svg path),
-    :global(.contact.github:has(.contact-link:focus) > svg path) {
+    :global(.contact.github:has(.contact-link:hover) > div svg path),
+    :global(.contact.github:has(.contact-link:focus) > div svg path),
+    :global(.contact.github:has(button:hover) > div svg path),
+    :global(.contact.github:has(button:focus) > div svg path) {
         fill: var(--github-fill);
     }
-    :global(.contact.gmail:has(.contact-link:hover) > svg path),
-    :global(.contact.gmail:has(.contact-link:focus) > svg path) {
+    :global(.contact.gmail:has(.contact-link:hover) > div svg path),
+    :global(.contact.gmail:has(.contact-link:focus) > div svg path),
+    :global(.contact.gmail:has(button:hover) > div svg path),
+    :global(.contact.gmail:has(button:focus) > div svg path) {
         fill: var(--gmail-fill);
     }
-    :global(.contact.discord:has(.contact-link:hover) > svg path),
-    :global(.contact.discord:has(.contact-link:focus) > svg path) {
+    :global(.contact.discord:has(.contact-link:hover) > div svg path),
+    :global(.contact.discord:has(.contact-link:focus) > div svg path),
+    :global(.contact.discord:has(button:hover) > div svg path),
+    :global(.contact.discord:has(button:focus) > div svg path) {
         fill: var(--discord-fill);
     }
     :global(.contact:has(.contact-link:focus) button) {

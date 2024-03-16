@@ -19,6 +19,22 @@
             }
         })
     })
+
+    /**
+     * @param {KeyboardEvent} event
+     */
+    function triggerPSWP(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            const pswpTrigger = event.target
+            if (pswpTrigger instanceof HTMLElement) {
+                const pswpLink = pswpTrigger.querySelector('.pswp-link')
+                if (pswpLink instanceof HTMLAnchorElement) {
+                    pswpLink.click()
+                }
+            }
+        }
+    }
 </script>
 
 <Navigation />
@@ -88,24 +104,29 @@
     <div class="section-content relative w-full px-6 space-y-4">
         <h1 class="sticky top-0 z-10 w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">Projects</h1>
         <div class="max-h-[24rem] overflow-y-scroll">
-            <div class="project-grid h-[max-content] grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <ul class="project-grid h-[max-content] grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {#each projects as project}
-                    <a href={project.imageURL} data-pswp-width="2500" data-pswp-height="1200" class="project-card w-full h-[max-content] relative overflow-hidden select-none outline-none border border-slate-500">
-                        <img loading="lazy" src={project.imageURL} alt={project.alt} draggable="false" class="project-card-img w-full object-cover">
+                    <!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-interactions -->
+                    <!-- https://github.com/dimsemenov/PhotoSwipe/discussions/2091 -->
+                    <li on:keydown={triggerPSWP} tabindex="0" aria-label="{project.title} Project: {project.description}" data-pswp-width="2500" data-pswp-height="1200" class="project-card w-full h-[max-content] relative overflow-hidden select-none outline-none border border-slate-500">
+                        <a href={project.imageURL} target="_blank" rel="noreferrer" data-pswp-width="2500" data-pswp-height="1200" aria-hidden="true" class="pswp-link hidden">{ project.title }</a>
+                        <img loading="lazy" aria-hidden="true" src={project.imageURL} alt={project.alt} draggable="false" class="project-card-img w-full object-cover">
                         <div class="project-card-title font-zenless-copy select-none px-4 py-4">
                             <div class="flex items-center justify-between">
-                                <a href={project.pageURL} class="project-internal-link text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">{project.title}</a>
-                                <a href={project.externalURL} target="_blank" draggable="false" class="project-external-link outline-none hover:text-tulip-tree-400 focus:text-tulip-tree-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-out-up-right"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>
+                                <a href={project.pageURL} aria-label={project.internalLinkLabel} class="project-internal-link text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">
+                                    {project.title}
+                                </a>
+                                <a href={project.externalURL} aria-label={project.externalLinkLabel} target="_blank" draggable="false" class="project-external-link outline-none hover:text-tulip-tree-400 focus:text-tulip-tree-400">
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-out-up-right"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>
                                 </a>
                             </div>
-                            <div class="project-description-wrapper">
+                            <div aria-hidden="true" class="project-description-wrapper">
                                 <p class="project-card-description text-sm text-pretty">{project.description}</p>
                             </div>
                         </div>
-                    </a>
+                    </li>
                 {/each}
-            </div>
+            </ul>
         </div>
         <!-- <div class="parallax-container relative">
             <div id="parallax" class="parallax" data-mouse-down-at="0" data-prev-percentage="0" data-scrolled-amount="0">

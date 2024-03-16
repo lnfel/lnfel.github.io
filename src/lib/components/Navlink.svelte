@@ -10,7 +10,7 @@
         <div class="text-xs leading-none bg-tulip-tree-400 rounded-full overflow-hidden px-2 py-1">Soon</div>
     </span>
 {:else}
-    <a {href} class="menu-link max-w-fit font-zenless-title uppercase text-4xl md:text-5xl outline-none px-6 py-2">
+    <a {href} {...$$restProps} class="menu-link max-w-fit font-zenless-title uppercase text-4xl md:text-5xl outline-none px-6 py-2">
         { text }
     </a>
 {/if}

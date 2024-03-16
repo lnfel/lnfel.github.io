@@ -50,7 +50,7 @@
     }
 </script>
 
-<a href="{base}/" draggable="false" class="logo group md:-rotate-90 text-indigo-500 dark:text-indigo-200 outline-none {$$props.class}">
+<a href="{base}/" draggable="false" aria-label="Infel's Room logo" class="logo group md:-rotate-90 text-indigo-500 dark:text-indigo-200 outline-none {$$props.class}">
     <h1 class="logo-text uppercase font-zenless-logo tracking-wider whitespace-nowrap italic px-4 transition-all duration-300">lnfel's Room</h1>
 </a>
 

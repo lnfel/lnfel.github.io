@@ -18,6 +18,8 @@ declare global {
             alt: string
             pageURL: string
             externalURL: string
+            internalLinkLabel: string
+            externalLinkLabel: string
         }
 
         type GenericList = {

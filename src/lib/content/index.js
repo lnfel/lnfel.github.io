@@ -6,7 +6,9 @@ export const projects = [
         imageURL: '/img/projects/aerial.webp',
         alt: 'Aerial demo',
         pageURL: '/projects/aerial',
-        externalURL: 'https://github.com/lnfel/aerial'
+        externalURL: 'https://github.com/lnfel/aerial',
+        internalLinkLabel: 'Read more about aerial project.',
+        externalLinkLabel: 'Visit aerial on github.'
     },
     {
         title: 'Lamy Debugbar',
@@ -14,7 +16,9 @@ export const projects = [
         imageURL: '/img/projects/lamy-debugbar.webp',
         alt: 'Lamy Debugbar demo page',
         pageURL: '/projects/lamy-debugbar',
-        externalURL: 'https://github.com/lnfel/lamy-debugbar'
+        externalURL: 'https://github.com/lnfel/lamy-debugbar',
+        internalLinkLabel: 'Read more about lamy debugbar',
+        externalLinkLabel: 'Visit lamy debugbar demo page.'
     },
     {
         title: 'RGMTSI',
@@ -22,7 +26,9 @@ export const projects = [
         imageURL: '/img/projects/rgmtsi.webp',
         alt: 'Machinery company website',
         pageURL: '/projects/rgmtsi',
-        externalURL: 'https://rgmtsinc.com/'
+        externalURL: 'https://rgmtsinc.com/',
+        internalLinkLabel: 'Read more about RGMTSI project.',
+        externalLinkLabel: 'Visit RGMTSI website.'
     },
     {
         title: 'Vasta',
@@ -30,7 +36,9 @@ export const projects = [
         imageURL: '/img/projects/vasta.webp',
         alt: 'Vasta Travel and Tours company website',
         pageURL: '/projects/vasta',
-        externalURL: 'https://lnfel.github.io/Vasta/'
+        externalURL: 'https://lnfel.github.io/Vasta/',
+        internalLinkLabel: 'Read more about vasta project.',
+        externalLinkLabel: 'Visit vasta website.'
     },
 ]
 

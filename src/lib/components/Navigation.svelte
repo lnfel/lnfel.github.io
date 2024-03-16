@@ -113,14 +113,14 @@
         <nav class="menu w-full h-full flex flex-col justify-between md:p-20">
             <div class="menu-links-container flex flex-col gap-2 px-4 py-6 pt-36 md:pt-0 md:pl-[5rem]">
                 {#each menu[(new URL($page.url)).pathname] as { text, href, disabled }}
-                    <Navlink href="{base}{href}" {text} {disabled} />
+                    <Navlink href="{base}{href}" {text} {disabled} aria-label="Go to {text.toLowerCase()} section." />
                 {/each}
             </div>
             <div class="flex items-center gap-2 px-8 py-6 md:pl-[6.5rem]">
                 <div class="w-10 h-10">
                     <img src="/img/ui/svelte-logo.svg" alt="" width="100" height="100" class="object-contain aspect-square">
                 </div>
-                <span class="font-zenless-copy">Proudly made with <a href="https://kit.svelte.dev/" target="_blank" class="text-[#ff3e00] outline-none hover:underline focus:underline">SvelteKit</a></span>
+                <span class="font-zenless-copy">Proudly made with <a href="https://kit.svelte.dev/" aria-label="Proudly made with SvelteKit" target="_blank" class="text-[#ff3e00] outline-none hover:underline focus:underline">SvelteKit</a></span>
             </div>
         </nav>
     </div>

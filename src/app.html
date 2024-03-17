@@ -2,13 +2,33 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+
+        <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/favicon-16x16.png">
         <link rel="manifest" href="%sveltekit.assets%/site.webmanifest">
+
+        <!-- Meta -->
 		<meta name="viewport" content="width=device-width" />
         <meta name="description" content="Creative web developer portfolio of Dale" />
-		%sveltekit.head%
+        <!-- https://github.com/joshbuchea/HEAD -->
+        <!-- Facebook Open Graph -->
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="%sveltekit.assets%/img/ui/stellar-bg/stellar-stellar.webp">
+        <meta property="og:image:alt" content="Meteor passing over the horizon.">
+        <meta property="og:description" content="lnfel's room, Dale's web developer portfolio and blog.">
+        <meta property="og:site_name" content="lnfel's Room">
+        <meta property="og:locale" content="en_US">
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="lnfel's Room">
+        <meta name="twitter:description" content="lnfel's room, Dale's web developer portfolio and blog.">
+        <meta name="twitter:image" content="%sveltekit.assets%/img/ui/stellar-bg/stellar-stellar.webp">
+        <meta name="twitter:image:alt" content="Meteor passing over the horizon.">
+        <!-- Pinterest -->
+        <meta name="pinterest" content="nopin" description="Sorry, you can't save from my website!">
+
         <!-- PRELOAD -->
         <link rel="preload" href="%sveltekit.assets%/font/Cyberpunk-Regular.ttf" as="font" type="font/ttf" crossorigin>
         <link rel="preload" href="%sveltekit.assets%/font/Zenless_1.woff2" as="font" type="font/woff2" crossorigin>
@@ -21,6 +41,7 @@
         <!-- CSS -->
         <link rel="stylesheet" href="%sveltekit.assets%/css/font.css">
         <link rel="stylesheet" href="%sveltekit.assets%/css/main.css">
+        %sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover" class="bg-indigo-50 dark:text-white dark:bg-slate-900 md:overflow-hidden">
 		<div style="display: contents">%sveltekit.body%</div>

@@ -143,7 +143,7 @@
                         <img loading="lazy" aria-hidden="true" src={project.imageURL} alt={project.alt} draggable="false" class="project-card-img w-full object-cover">
                         <div class="project-card-title font-zenless-copy select-none px-4 py-4">
                             <div class="flex items-center justify-between">
-                                <a href={project.pageURL} aria-label={project.internalLinkLabel} class="project-internal-link text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">
+                                <a href={project.pageURL} aria-label={project.internalLinkLabel} class="project-internal-link text-xl md:text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">
                                     {project.title}
                                 </a>
                                 <a href={project.externalURL} aria-label={project.externalLinkLabel} target="_blank" draggable="false" class="project-external-link outline-none hover:text-tulip-tree-400 focus:text-tulip-tree-400">
@@ -151,7 +151,7 @@
                                 </a>
                             </div>
                             <div aria-hidden="true" class="project-description-wrapper">
-                                <p class="project-card-description text-sm text-pretty">{project.description}</p>
+                                <p class="project-card-description text-xs md:text-sm text-pretty">{project.description}</p>
                             </div>
                         </div>
                     </li>
@@ -345,14 +345,16 @@
         background-position: center;
     }
 
-    .project-card:hover .project-description-wrapper,
-    .project-card:focus .project-description-wrapper,
-    .project-card:has(a.project-internal-link:hover) .project-description-wrapper,
-    .project-card:has(a.project-internal-link:focus) .project-description-wrapper,
-    .project-card:has(a.project-external-link:hover) .project-description-wrapper,
-    .project-card:has(a.project-external-link:focus) .project-description-wrapper {
-        grid-template-rows: 1fr;
-        transition: grid-template-rows 200ms ease-out;
+    @media (min-width: 768px) {
+        .project-card:hover .project-description-wrapper,
+        .project-card:focus .project-description-wrapper,
+        .project-card:has(a.project-internal-link:hover) .project-description-wrapper,
+        .project-card:has(a.project-internal-link:focus) .project-description-wrapper,
+        .project-card:has(a.project-external-link:hover) .project-description-wrapper,
+        .project-card:has(a.project-external-link:focus) .project-description-wrapper {
+            grid-template-rows: 1fr;
+            transition: grid-template-rows 200ms ease-out;
+        }
     }
 
     .project-card:hover .project-card-title {

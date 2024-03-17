@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte"
     import { base } from "$app/paths"
+    import { scrollToHash } from "$lib/utils/navigation"
 
     import { projects, languages, metaFramework, tooling } from "$lib/content"
 
@@ -8,13 +9,41 @@
     import Contact from "$lib/components/Contact.svelte"
 
     onMount(() => {
-        const scrollSelector = ['.project-grid', '#about .section-content']
+        const scrollSelector = ['#projects .section-content', '#about .section-content'] //'.project-grid'
 
         scrollSelector.forEach((selector) => {
             const element = document.querySelector(selector)
             if (element instanceof HTMLElement) {
                 element.onwheel = event => {
-                    event.stopPropagation()
+                    const mediumScreen = window.matchMedia("(min-width: 768px)")
+                    const scrollTop = element.scrollTop
+                    const scrollPercent = Math.round((scrollTop / (element.scrollHeight - element.offsetHeight)) * 100)
+                    // console.log({
+                    //     scrollTop: element.scrollTop,
+                    //     scrollPercent,
+                    //     scrollHeight: element.scrollHeight
+                    // })
+                    if (mediumScreen.matches) {
+                        if (event.deltaY > 0 && scrollPercent !== 100 || event.deltaY < 0 && scrollPercent !== 0) {
+                            event.stopPropagation()
+                            scrollToHash({
+                                hash: element.parentElement?.id ? `#${element.parentElement.id}` : '',
+                                scrollElement: document.querySelector('main')
+                            })
+                        }
+                    }
+                    // if (event.deltaY > 0 && scrollPercent === 100) {
+                    //     scrollToHash({
+                    //         hash: element.nextElementSibling ? `#${element.nextElementSibling?.id}` : '',
+                    //         scrollElement: document.querySelector('main')
+                    //     })
+                    // }
+                    // if (event.deltaY < 0 && scrollPercent === 0) {
+                    //     scrollToHash({
+                    //         hash: element.previousElementSibling ? `#${element.previousElementSibling?.id}` : '',
+                    //         scrollElement: document.querySelector('main')
+                    //     })
+                    // }
                 }
             }
         })
@@ -39,18 +68,18 @@
 
 <Navigation />
 
-<section id="about" class="w-screen h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
+<section id="about" class="w-screen md:h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
     <div class="md:w-[7rem]"></div>
-    <div class="section-content relative h-[24rem] overflow-y-auto px-6 space-y-10">
+    <div class="section-content h-full md:overflow-y-auto px-6 space-y-10">
         <article class="space-y-2">
-            <h1 class="sticky top-0 z-10 w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">About</h1>
+            <h1 class="w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">About</h1>
             <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
                 Hey there, I'm Dale and welcome to my room. Feel free to look around or scroll a bit more to see my recent projects.
             </p>
         </article>
 
         <article class="space-y-2">
-            <h2 class="sticky top-0 z-10 w-full font-zenless-title text-2xl md:text-3xl dark:bg-slate-900 py-2">Technologies and development tools I am familiar with</h2>
+            <h2 class="w-full font-zenless-title text-2xl md:text-3xl dark:bg-slate-900 py-2">Technologies and development tools I am familiar with</h2>
             <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
                 Here are a list of languages and technologies that I am familiar and worked with in the past up until now:
             </p>
@@ -99,11 +128,12 @@
     </div>
 </section>
 
-<section id="projects" class="w-screen h-screen shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
+<section id="projects" class="w-screen md:h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
     <div class="md:w-[7rem]"></div>
-    <div class="section-content relative w-full px-6 space-y-4">
-        <h1 class="sticky top-0 z-10 w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">Projects</h1>
-        <div class="max-h-[24rem] overflow-y-scroll">
+    <div class="section-content h-full md:overflow-y-auto px-6 space-y-4">
+        <!-- sticky top-0 z-10  -->
+        <h1 class="w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">Projects</h1>
+        <!-- <div class="max-h-[24rem] overflow-y-scroll"> -->
             <ul class="project-grid h-[max-content] grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {#each projects as project}
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-interactions -->
@@ -127,7 +157,7 @@
                     </li>
                 {/each}
             </ul>
-        </div>
+        <!-- </div> -->
         <!-- <div class="parallax-container relative">
             <div id="parallax" class="parallax" data-mouse-down-at="0" data-prev-percentage="0" data-scrolled-amount="0">
                 {#each projects as project}

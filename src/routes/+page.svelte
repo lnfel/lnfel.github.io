@@ -74,7 +74,7 @@
     -->
     <!-- Facebook Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:image" content="{base}/img/ui/stellar-bg/stellar-stellar.webp">
+    <meta property="og:image" content="https://lnfel.github.io/img/ui/stellar-bg/stellar-stellar.webp">
     <meta property="og:image:alt" content="Meteor passing over the horizon.">
     <meta property="og:description" content="lnfel's room, Dale's web developer portfolio and blog.">
     <meta property="og:site_name" content="lnfel's Room">
@@ -83,7 +83,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="lnfel's Room">
     <meta name="twitter:description" content="lnfel's room, Dale's web developer portfolio and blog.">
-    <meta name="twitter:image" content="{base}/img/ui/stellar-bg/stellar-stellar.webp">
+    <meta name="twitter:image" content="https://lnfel.github.io/img/ui/stellar-bg/stellar-stellar.webp">
     <meta name="twitter:image:alt" content="Meteor passing over the horizon.">
 </svelte:head>
 

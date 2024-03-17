@@ -66,6 +66,27 @@
     }
 </script>
 
+<svelte:head>
+    <!-- https://github.com/joshbuchea/HEAD -->
+    <!--
+        Image url must be absolute path
+        https://stackoverflow.com/a/73545179/12478479
+    -->
+    <!-- Facebook Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{base}/img/ui/stellar-bg/stellar-stellar.webp">
+    <meta property="og:image:alt" content="Meteor passing over the horizon.">
+    <meta property="og:description" content="lnfel's room, Dale's web developer portfolio and blog.">
+    <meta property="og:site_name" content="lnfel's Room">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="lnfel's Room">
+    <meta name="twitter:description" content="lnfel's room, Dale's web developer portfolio and blog.">
+    <meta name="twitter:image" content="{base}/img/ui/stellar-bg/stellar-stellar.webp">
+    <meta name="twitter:image:alt" content="Meteor passing over the horizon.">
+</svelte:head>
+
 <Navigation />
 
 <section id="about" class="w-screen md:h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">

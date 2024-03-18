@@ -134,7 +134,7 @@
 </script>
 
 <svelte:head>
-    <title>lnfel's Room</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </svelte:head>
 
 <Header>
@@ -151,7 +151,10 @@
 
 <!-- <LamyDebugbar data={debug} open /> -->
 
-<style>
+<style lang="postcss">
+    :global(body) {
+        background-color: theme(colors.indigo.50);
+    }
     :global(.lamy-debugbar) {
         /* position: fixed;
         bottom: 0;
@@ -164,5 +167,15 @@
     :global(.lamy-debugbar:hover),
     :global(.lamy-debugbar:has(button:focus)) {
         opacity: 1;
+    }
+    @media (prefers-color-scheme: dark) {
+        :global(body) {
+            @apply dark:text-white dark:bg-slate-900;
+        }
+    }
+    @media (min-width: 768px) {
+        :global(body) {
+            overflow: hidden;
+        }
     }
 </style>

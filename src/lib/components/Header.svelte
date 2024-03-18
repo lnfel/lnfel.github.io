@@ -25,7 +25,7 @@
     })
 </script>
 
-<header class="fixed top-0 left-0 w-full md:w-[7rem] md:h-full bg-slate-900/50 px-4 py-2 lg:px-[3rem] z-30 transition-all duration-300">
+<header class="fixed top-0 left-0 w-full md:w-[7rem] md:h-full bg-slate-900/50 px-4 py-2 lg:px-[3rem] z-30 transition-all duration-300 no-print">
     <div class="flex items-center justify-between">
         <Logo class="md:absolute md:translate-y-[-50%] md:translate-x-[-50%] md:top-[50%] md:left-[50%]" />
         

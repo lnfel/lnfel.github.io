@@ -47,6 +47,7 @@
 		"@threlte/extras": "^8.8.1",
 		"@tweakpane/core": "^2.0.3",
 		"crayon.js": "^3.3.3",
+		"html2pdf.js": "^0.10.1",
 		"lamy-debugbar": "^0.3.1",
 		"photoswipe": "^5.4.3",
 		"three": "^0.161.0",

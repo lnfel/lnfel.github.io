@@ -161,7 +161,7 @@
         <article class="space-y-2">
             <h2 class="sticky top-0 z-10 w-full font-zenless-title text-2xl md:text-3xl dark:bg-slate-900 py-2">How I fell in love with web development</h2>
             <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
-                It started as a hobby in 2010 writing CSS to customize Friendster profiles then came a thirst for something more.
+                It started as a hobby in 2007 writing CSS to customize Friendster profiles then came a thirst for something more.
                 I found myself reading about HTML, CSS, JQuery and how to write an index.html file using notepad (yes JQuery is learnt before JavaScript).
                 Inspired by what I read and saw in CSS-Tricks and Codepen, it kept me going.
                 Later I learned Ruby language and it's framework Ruby on Rails. Obviously I went back writing plain html files because I could not comprehend MVC yet.

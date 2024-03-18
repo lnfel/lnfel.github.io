@@ -31,4 +31,9 @@
     :global(body) {
         scroll-behavior: smooth;
     }
+    @media (min-width: 768px) {
+        :global(body) {
+            overflow: auto;
+        }
+    }
 </style>

@@ -10,6 +10,7 @@ export const menu = {
         { text: 'About', href: '#about' },
         { text: 'Projects', href: '#projects' },
         { text: 'Contact', href: '#contact' },
+        { text: 'Resume', href: '/resume' },
         { text: 'Blog', href: '/blog', disabled: true },
     ],
     '/blog': [

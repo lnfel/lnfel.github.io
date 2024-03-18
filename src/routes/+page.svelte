@@ -2,11 +2,15 @@
     import { onMount } from "svelte"
     import { base } from "$app/paths"
     import { scrollToHash } from "$lib/utils/navigation"
+    import { normalizeWheel } from "$lib/utils/dom"
 
     import { projects, languages, metaFramework, tooling } from "$lib/content"
 
     import Navigation from "$lib/components/Navigation.svelte"
     import Contact from "$lib/components/Contact.svelte"
+    import LamyDebugbar from "lamy-debugbar"
+
+    let debug = {}
 
     onMount(() => {
         const scrollSelector = ['#projects .section-content', '#about .section-content'] //'.project-grid'
@@ -16,19 +20,57 @@
             if (element instanceof HTMLElement) {
                 element.onwheel = event => {
                     const mediumScreen = window.matchMedia("(min-width: 768px)")
-                    const scrollTop = element.scrollTop
-                    const scrollPercent = Math.round((scrollTop / (element.scrollHeight - element.offsetHeight)) * 100)
-                    // console.log({
-                    //     scrollTop: element.scrollTop,
-                    //     scrollPercent,
-                    //     scrollHeight: element.scrollHeight
-                    // })
                     if (mediumScreen.matches) {
-                        if (event.deltaY > 0 && scrollPercent !== 100 || event.deltaY < 0 && scrollPercent !== 0) {
+                        // const scrollTop = element.scrollTop
+                        // const scrollPercent = Math.round((scrollTop / (element.scrollHeight - element.offsetHeight)) * 100)
+                        // if (event.deltaY > 0 && scrollPercent !== 100 || event.deltaY < 0 && scrollPercent !== 0) {
+                        //     event.stopPropagation()
+                        //     scrollToHash({
+                        //         hash: element.parentElement?.id ? `#${element.parentElement.id}` : '',
+                        //         scrollElement: document.querySelector('main')
+                        //     })
+                        // }
+                        // console.log({
+                        //     scrollTop: element.scrollTop,
+                        //     scrollPercent,
+                        //     scrollHeight: element.scrollHeight
+                        // })
+
+                        const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import("$lib/utils/dom").LegacyWheelEvent} */ (event))
+                        element.dataset.scrolledAmount = (Number(element.dataset.scrolledAmount ?? 0) + normalizedWheel.pixelY).toString()
+                        const wheelDelta = Number(element.dataset.scrolledAmount)
+                        const maxDelta = element.offsetHeight / 2
+                        if (wheelDelta < 0) element.dataset.scrolledAmount = '0';
+                        if (wheelDelta >= maxDelta) element.dataset.scrolledAmount = maxDelta.toString();
+                        const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -50), 0)
+                        element.dataset.percentage = percentage.toString()
+                        // debug = {
+                        //     normalizedWheel,
+                        //     scroll: {
+                        //         wheelDelta,
+                        //         maxDelta,
+                        //         percentage,
+                        //         deltaY: event.deltaY
+                        //     },
+                        //     element: {
+                        //         scrolledAmount: element.dataset.scrolledAmount,
+                        //         percentage: element.dataset.percentage
+                        //     }
+                        // }
+                        // console.log(debug)
+
+                        if (event.deltaY > 0 && percentage !== -50 || event.deltaY < 0 && percentage !== 0) {
+                            event.preventDefault()
                             event.stopPropagation()
+                            element.animate({
+                                transformOrigin: 'center',
+                                top: `${Math.abs(percentage)}%`,
+                                transform: `translate(0%, ${percentage}%)`
+                            }, { duration: 2000, fill: "forwards" })
                             scrollToHash({
                                 hash: element.parentElement?.id ? `#${element.parentElement.id}` : '',
-                                scrollElement: document.querySelector('main')
+                                scrollElement: document.querySelector('main'),
+                                duration: 3000
                             })
                         }
                     }
@@ -68,9 +110,10 @@
 
 <Navigation />
 
-<section id="about" class="w-screen md:h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
+<section id="about" class="w-screen md:h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-0">
     <div class="md:w-[7rem]"></div>
-    <div class="section-content h-full md:overflow-y-auto px-6 space-y-10">
+    <!-- h-full md:overflow-y-auto scroll-smooth -->
+    <div class="section-content h-[max-content] px-6 md:p-20 space-y-10">
         <article class="space-y-2">
             <h1 class="w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">About</h1>
             <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
@@ -130,7 +173,8 @@
 
 <section id="projects" class="w-screen md:h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
     <div class="md:w-[7rem]"></div>
-    <div class="section-content h-full md:overflow-y-auto px-6 space-y-4">
+    <!-- h-full md:overflow-y-auto scroll-smooth -->
+    <div class="section-content h-[max-content] px-6 space-y-4">
         <!-- sticky top-0 z-10  -->
         <h1 class="w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">Projects</h1>
         <!-- <div class="max-h-[24rem] overflow-y-scroll"> -->
@@ -231,6 +275,8 @@
         </div>
     </div>
 </section>
+
+<!-- <LamyDebugbar data={debug} open /> -->
 
 <style>
     /* #parallax {

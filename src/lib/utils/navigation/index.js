@@ -24,9 +24,9 @@ export const menu = {
 /**
  * Smooth scroll to anchor link's hash
  * 
- * @param {{ hash?: String, scrollElement: HTMLElement | null }} ScrollToHashParams
+ * @param {{ hash?: String, scrollElement: HTMLElement | null, duration?: Number }} ScrollToHashParams
  */
-export function scrollToHash({ hash = '', scrollElement }) {
+export function scrollToHash({ hash = '', scrollElement, duration = 1000 }) {
     if (scrollElement instanceof HTMLElement) {
         const anchorID = hash.replace('#', '')
         const anchor = document.getElementById(anchorID)
@@ -47,7 +47,7 @@ export function scrollToHash({ hash = '', scrollElement }) {
                 transformOrigin: 'center',
                 left: `${Math.abs(percentage)}%`,
                 transform: `translate(${percentage}%, 0% )`
-            }, { duration: 1000, fill: "forwards" })
+            }, { duration, fill: "forwards" })
 
             // window.scrollTo({
             //     left: anchor.offsetLeft ?? 0,

@@ -5,6 +5,7 @@
     import { onNavigate } from "$app/navigation"
     import { decryptAnimation } from "$lib/utils"
     import { scrollToHash, navigateToHash, onHashChange } from "$lib/utils/navigation"
+    import { normalizeWheel } from "$lib/utils/dom"
     import { menu } from "$lib/utils/navigation"
 
     import Navlink from "$lib/components/Navlink.svelte"
@@ -43,7 +44,8 @@
                 const mediumScreen = window.matchMedia("(min-width: 768px)")
                 if (mediumScreen.matches) {
                     event.preventDefault()
-                    main.dataset.scrolledAmount = (Number(main.dataset.scrolledAmount) + event.deltaY).toString()
+                    const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import("$lib/utils/dom").LegacyWheelEvent} */ (event))
+                    main.dataset.scrolledAmount = (Number(main.dataset.scrolledAmount) + normalizedWheel.pixelY).toString()
                     const wheelDelta = Number(main.dataset.scrolledAmount)
                     const maxDelta = main.getBoundingClientRect().width / 2 // main.getBoundingClientRect().width
 
@@ -57,7 +59,14 @@
                         transformOrigin: 'center',
                         left: `${Math.abs(percentage)}%`,
                         transform: `translate(${percentage}%, 0% )`
-                    }, { duration: 1000, fill: "forwards" })
+                    }, { duration: 3000, fill: "forwards" })
+                    // const lamyDebugbar = document.querySelector('.lamy-debugbar')
+                    // if (lamyDebugbar instanceof HTMLElement) {
+                    //     console.log(main.getBoundingClientRect(), window.innerWidth)
+                    //     lamyDebugbar.animate({
+                    //         left: `${Math.abs(main.getBoundingClientRect().left)}px`,
+                    //     }, { duration: 0, fill: "forwards" })
+                    // }
                 }
                 // event.preventDefault()
                 // This one requires overflow-hidden on main element and is not smooth on Windows OS

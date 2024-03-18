@@ -90,38 +90,38 @@
                 // }
             }
 
-            parallax.onmousedown = event => {
-                parallax.dataset.mouseDownAt = event.clientX.toString()
-            }
+            // parallax.onmousedown = event => {
+            //     parallax.dataset.mouseDownAt = event.clientX.toString()
+            // }
 
-            parallax.onmousemove = event => {
-                if (parallax.dataset.mouseDownAt === "0") return
+            // parallax.onmousemove = event => {
+            //     if (parallax.dataset.mouseDownAt === "0") return
 
-                const mouseDelta = parseFloat(parallax.dataset?.mouseDownAt ?? '0') - event.clientX
-                const maxDelta = window.innerWidth / 2
-                const percentage = (mouseDelta / maxDelta) * -100
-                const nextPercentage = Math.min(Math.max(parseFloat(parallax.dataset?.prevPercentage ?? '0') + percentage, -100), 0)
+            //     const mouseDelta = parseFloat(parallax.dataset?.mouseDownAt ?? '0') - event.clientX
+            //     const maxDelta = window.innerWidth / 2
+            //     const percentage = (mouseDelta / maxDelta) * -100
+            //     const nextPercentage = Math.min(Math.max(parseFloat(parallax.dataset?.prevPercentage ?? '0') + percentage, -100), 0)
 
-                parallax.dataset.percentage = nextPercentage.toString()
+            //     parallax.dataset.percentage = nextPercentage.toString()
 
-                parallax.animate({
-                    transformOrigin: 'center',
-                    left: `${Math.abs(nextPercentage)}%`,
-                    transform: `translate(${nextPercentage}%, 0% )`
-                }, { duration: 1200, fill: "forwards" })
+            //     parallax.animate({
+            //         transformOrigin: 'center',
+            //         left: `${Math.abs(nextPercentage)}%`,
+            //         transform: `translate(${nextPercentage}%, 0% )`
+            //     }, { duration: 1200, fill: "forwards" })
 
-                const parallaxCardImages = /** @type {NodeListOf<HTMLImageElement>} */ (parallax.querySelectorAll('.parallax-card-img'))
-                parallaxCardImages.forEach((image) => {
-                    image.animate({
-                        objectPosition: `${nextPercentage + 100}% center`
-                    }, { duration: 1200, fill: "forwards" })
-                })
-            }
+            //     const parallaxCardImages = /** @type {NodeListOf<HTMLImageElement>} */ (parallax.querySelectorAll('.parallax-card-img'))
+            //     parallaxCardImages.forEach((image) => {
+            //         image.animate({
+            //             objectPosition: `${nextPercentage + 100}% center`
+            //         }, { duration: 1200, fill: "forwards" })
+            //     })
+            // }
 
-            parallax.onmouseup = () => {
-                parallax.dataset.mouseDownAt = "0"
-                parallax.dataset.prevPercentage = parallax.dataset.percentage
-            }
+            // parallax.onmouseup = () => {
+            //     parallax.dataset.mouseDownAt = "0"
+            //     parallax.dataset.prevPercentage = parallax.dataset.percentage
+            // }
         }
     })
 
@@ -153,7 +153,11 @@
 
 <style>
     :global(.lamy-debugbar) {
-        z-index: 30;
+        /* position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 50;
+        width: 100vw; */
         /* opacity: 0.1; */
         transition: 300ms ease-in-out all;
     }

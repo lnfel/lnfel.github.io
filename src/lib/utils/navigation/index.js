@@ -50,6 +50,14 @@ export function scrollToHash({ hash = '', scrollElement, duration = 1000 }) {
                 transform: `translate(${percentage}%, 0% )`
             }, { duration, fill: "forwards" })
 
+            // console.log('scrollToHash: ', {
+            //     percentage,
+            //     anchorDelta,
+            //     maxDelta,
+            //     anchorID,
+            //     anchor
+            // })
+
             // window.scrollTo({
             //     left: anchor.offsetLeft ?? 0,
             //     behavior: 'smooth'
@@ -102,6 +110,7 @@ export function navigateToHash({ scrollElement }) {
 export function onHashChange({ scrollElement }) {
     return (event) => {
         const url = new URL(event.newURL)
+        // console.log('onHashChange hash: ', url?.hash)
         scrollToHash({ hash: url?.hash, scrollElement })
     }
 }

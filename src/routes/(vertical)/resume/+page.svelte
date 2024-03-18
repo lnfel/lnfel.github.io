@@ -47,7 +47,7 @@
     <span class="sr-only">Print</span>
 </button>
 
-<section class="shrink-0 md:flex px-4 py-6 pt-[9rem] md:p-0 md:pb-56 bg-white text-slate-900">
+<section class="hidden-village shrink-0 md:flex px-4 py-6 pt-[9rem] md:p-0 md:pb-56 bg-white text-slate-900">
     <div class="md:w-[7rem]"></div>
     <!-- backdrop-blur-sm -->
     <div class="backrop">
@@ -209,7 +209,15 @@
             url(/img/resume/frieren-footer.png);
         background-repeat: no-repeat, no-repeat;
         background-size: 100% auto, 100% auto;
-        background-position: top left, bottom left;
+        background-position: top left, left 100%;
+        will-change: background-position;
+        transition: background-position 1.5s ease-in-out;
+    }
+    section.hidden-village {
+        background-position: top left, left 102%;
+    }
+    .section-content div {
+        opacity: 0;
     }
     /* .backrop {
         background: linear-gradient(to right, transparent 0%, rgb(255 255 255 / 0.7) 10%, rgb(255 255 255 / 0.7) 90%, transparent 100%);

@@ -152,6 +152,9 @@
 <!-- <LamyDebugbar data={debug} open /> -->
 
 <style lang="postcss">
+    /* main {
+        view-transition-name: main;
+    } */
     :global(body) {
         background-color: theme(colors.indigo.50);
     }
@@ -171,11 +174,6 @@
     @media (prefers-color-scheme: dark) {
         :global(body) {
             @apply dark:text-white dark:bg-slate-900;
-        }
-    }
-    @media (min-width: 768px) {
-        :global(body) {
-            overflow: hidden;
         }
     }
 </style>

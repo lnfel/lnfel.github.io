@@ -1,8 +1,54 @@
 <script>
     import "$lib/app.css"
+    import { onMount } from "svelte"
+    import { onNavigate, afterNavigate } from "$app/navigation"
     import { classToggle } from "$lib/utils"
 
     import Header from "$lib/components/Header.svelte"
+
+    onNavigate(async (navigation) => {
+        if (!document.startViewTransition) return
+
+        return new Promise(resolve => {
+            document.startViewTransition(async () => {
+                resolve()
+                await navigation.complete
+            })
+        })
+    })
+
+    afterNavigate(async (navigation) => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'instant'
+        })
+        const section = document.querySelector('section')
+        if (section) {
+            section.classList.remove('hidden-village')
+        }
+    })
+
+    onMount(() => {
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+            const sectionContents = document.querySelectorAll('.section-content div')
+            sectionContents.forEach((element) => {
+                element.animate(
+                    {
+                        opacity: [0, 1]
+                    },
+                    {
+                        fill: 'forwards',
+                        duration: 300,
+                        delay: 1500
+                    }
+                )
+            })
+        }, 2000)
+    })
 
     function toggleMenu() {
         const nav = document.querySelector('.menu-container')
@@ -30,10 +76,5 @@
 <style>
     :global(body) {
         scroll-behavior: smooth;
-    }
-    @media (min-width: 768px) {
-        :global(body) {
-            overflow: auto;
-        }
     }
 </style>

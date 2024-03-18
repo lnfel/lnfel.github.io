@@ -1,5 +1,6 @@
 <script>
     import { onMount, onDestroy } from "svelte"
+    import { browser } from "$app/environment"
     import { page } from "$app/stores"
     import { base } from "$app/paths"
     import { onNavigate } from "$app/navigation"
@@ -24,13 +25,54 @@
         
         if (!document.startViewTransition) return
 
-        // return new Promise(resolve => {
-        //     document.startViewTransition(async () => {
-        //         resolve()
-        //         await navigation.complete
-        //     })
-        // })
+        return new Promise(resolve => {
+            document.startViewTransition(async () => {
+                resolve()
+                await navigation.complete
+            })
+        })
     })
+
+    /**
+     * @param {MouseEvent} event
+     */
+    const wheelHandler = (event) => {
+        const main = document.querySelector('main')
+        if (main instanceof HTMLElement) {
+            const mediumScreen = window.matchMedia("(min-width: 768px)")
+            if (mediumScreen.matches) {
+                event.preventDefault()
+                const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import("$lib/utils/dom").LegacyWheelEvent} */ (event))
+                main.dataset.scrolledAmount = (Number(main.dataset.scrolledAmount) + normalizedWheel.pixelY).toString()
+                const wheelDelta = Number(main.dataset.scrolledAmount)
+                const maxDelta = main.getBoundingClientRect().width / 2 // main.getBoundingClientRect().width
+
+                if (wheelDelta < 0) main.dataset.scrolledAmount = '0';
+                if (wheelDelta >= maxDelta) main.dataset.scrolledAmount = maxDelta.toString();
+                const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -75), 0)
+
+                main.dataset.percentage = percentage.toString()
+
+                main.animate({
+                    transformOrigin: 'center',
+                    left: `${Math.abs(percentage)}%`,
+                    transform: `translate(${percentage}%, 0% )`
+                }, { duration: 3000, fill: "forwards" })
+                // const lamyDebugbar = document.querySelector('.lamy-debugbar')
+                // if (lamyDebugbar instanceof HTMLElement) {
+                //     console.log(main.getBoundingClientRect(), window.innerWidth)
+                //     lamyDebugbar.animate({
+                //         left: `${Math.abs(main.getBoundingClientRect().left)}px`,
+                //     }, { duration: 0, fill: "forwards" })
+                // }
+            }
+            // event.preventDefault()
+            // This one requires overflow-hidden on main element and is not smooth on Windows OS
+            // mediumScreen.matches
+            //     ? main.scrollLeft += event.deltaY
+            //     : main.scrollTop += event.deltaY
+        }
+    }
 
     onMount(() => {
         decryptAnimation({ target: '.menu-link' })
@@ -40,40 +82,7 @@
          * Horizontal Scrolling using mousewheel/trackpad
          */
         if (main instanceof HTMLElement) {
-            window.addEventListener('wheel', (event) => {
-                const mediumScreen = window.matchMedia("(min-width: 768px)")
-                if (mediumScreen.matches) {
-                    event.preventDefault()
-                    const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import("$lib/utils/dom").LegacyWheelEvent} */ (event))
-                    main.dataset.scrolledAmount = (Number(main.dataset.scrolledAmount) + normalizedWheel.pixelY).toString()
-                    const wheelDelta = Number(main.dataset.scrolledAmount)
-                    const maxDelta = main.getBoundingClientRect().width / 2 // main.getBoundingClientRect().width
-
-                    if (wheelDelta < 0) main.dataset.scrolledAmount = '0';
-                    if (wheelDelta >= maxDelta) main.dataset.scrolledAmount = maxDelta.toString();
-                    const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -75), 0)
-
-                    main.dataset.percentage = percentage.toString()
-
-                    main.animate({
-                        transformOrigin: 'center',
-                        left: `${Math.abs(percentage)}%`,
-                        transform: `translate(${percentage}%, 0% )`
-                    }, { duration: 3000, fill: "forwards" })
-                    // const lamyDebugbar = document.querySelector('.lamy-debugbar')
-                    // if (lamyDebugbar instanceof HTMLElement) {
-                    //     console.log(main.getBoundingClientRect(), window.innerWidth)
-                    //     lamyDebugbar.animate({
-                    //         left: `${Math.abs(main.getBoundingClientRect().left)}px`,
-                    //     }, { duration: 0, fill: "forwards" })
-                    // }
-                }
-                // event.preventDefault()
-                // This one requires overflow-hidden on main element and is not smooth on Windows OS
-                // mediumScreen.matches
-                //     ? main.scrollLeft += event.deltaY
-                //     : main.scrollTop += event.deltaY
-            }, { passive: false })
+            window.addEventListener('wheel', wheelHandler, { passive: false })
         }
         /**
          * Hash navigation
@@ -110,6 +119,12 @@
         }
 
         window.onhashchange = onHashChange({ scrollElement: main })
+    })
+
+    onDestroy(() => {
+        if (browser) {
+            window.removeEventListener('wheel', wheelHandler)
+        }
     })
 </script>
 

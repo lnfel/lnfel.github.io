@@ -156,6 +156,7 @@
         view-transition-name: main;
     } */
     :global(body) {
+        scroll-behavior: smooth;
         background-color: theme(colors.indigo.50);
     }
     :global(.lamy-debugbar) {
@@ -170,6 +171,11 @@
     :global(.lamy-debugbar:hover),
     :global(.lamy-debugbar:has(button:focus)) {
         opacity: 1;
+    }
+    @media (min-width: 768px) {
+        :global(body) {
+            overflow: hidden;
+        }
     }
     @media (prefers-color-scheme: dark) {
         :global(body) {

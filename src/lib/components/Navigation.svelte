@@ -133,8 +133,9 @@
         <div class="stellar-colored"></div>
         <img src="/img/ui/stellar-bg/grayscale.webp" alt="" class="stellar-grayscale hidden md:block">
     </div>
-    <div class="menu-container absolute inset-0 z-30">
-        <nav class="menu w-full h-full flex flex-col justify-between md:p-20">
+    <div class="menu-container absolute inset-0 z-30 flex items-center">
+        <!-- flex flex-col justify-between -->
+        <nav class="menu w-full h-full md:h-[min-content] md:p-20">
             <div class="menu-links-container flex flex-col gap-2 px-4 py-6 pt-36 md:pt-0 md:pl-[5rem]">
                 {#each menu[(new URL($page.url)).pathname] as { text, href, disabled }}
                     <Navlink href="{base}{href}" {text} {disabled} aria-label="Go to {text.toLowerCase()} section." />

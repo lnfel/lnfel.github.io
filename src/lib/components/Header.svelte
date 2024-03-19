@@ -6,7 +6,7 @@
         const nav = document.querySelector('nav')
         const observer = new IntersectionObserver((entries) => {
             const header = document.querySelector('header')
-            if (header) {
+            if (header && window.location.pathname === "/") {
                 const logoText = /** @type {HTMLHeadingElement} */ (header.querySelector('.logo-text'))
                 if (entries[0].intersectionRatio <= 0.1) {
                     header.style.backdropFilter = 'saturate(50%) blur(4px)'

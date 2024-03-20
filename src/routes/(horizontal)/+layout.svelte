@@ -148,7 +148,7 @@
 </Header>
 
 <!-- overflow-hidden is needed when scrolling with native scroll -->
-<main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] h-screen md:static md:flex md:items-stretch md:h-full will-change-scroll">
+<main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] h-screen md:static md:flex md:items-stretch md:h-full dark:text-white will-change-scroll">
     <slot />
 </main>
 
@@ -158,10 +158,6 @@
     /* main {
         view-transition-name: main;
     } */
-    :global(body) {
-        scroll-behavior: smooth;
-        background-color: theme(colors.indigo.50);
-    }
     :global(.lamy-debugbar) {
         /* position: fixed;
         bottom: 0;
@@ -174,15 +170,5 @@
     :global(.lamy-debugbar:hover),
     :global(.lamy-debugbar:has(button:focus)) {
         opacity: 1;
-    }
-    @media (min-width: 768px) {
-        :global(body) {
-            overflow: hidden;
-        }
-    }
-    @media (prefers-color-scheme: dark) {
-        :global(body) {
-            @apply dark:text-white dark:bg-slate-900;
-        }
     }
 </style>

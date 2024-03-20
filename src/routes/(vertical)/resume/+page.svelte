@@ -210,10 +210,11 @@
         background-repeat: no-repeat, no-repeat;
         background-size: 100% auto, 100% auto;
         background-position: top left, left 100%;
-        will-change: background-position;
-        transition: background-position 1.5s ease-in-out;
+        will-change: background-position, opacity;
+        transition: all 1.5s ease-in-out;
     }
     section.hidden-village {
+        opacity: 0;
         background-position: top left, left 102%;
     }
     .section-content div {

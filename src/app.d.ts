@@ -28,6 +28,8 @@ declare global {
             textColor?: string
         }
 	}
+    
+    declare function loadPyodide(options?: Parameters<typeof import('pyodide').loadPyodide>): Promise<import('pyodide').PyodideInterface>
 }
 
 export {};

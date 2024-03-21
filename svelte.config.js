@@ -20,6 +20,9 @@ const config = {
             handleMissingId: 'warn',
             handleHttpError: 'warn'
         },
+        csrf: {
+            checkOrigin: false
+        }
 	},
     preprocess: sequence([
         vitePreprocess(),

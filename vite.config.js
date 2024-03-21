@@ -14,5 +14,14 @@ export default defineConfig({
     },
     preview: {
         port: 7777
+    },
+    resolve: {
+        alias: {
+            /**
+             * [Bugfix] Fail to resolve node-fetch when importing pyodide
+             * @see {@link https://github.com/pyodide/pyodide/issues/4244#issuecomment-1816370425}
+             */
+            'node-fetch': 'isomorphic-fetch'
+        }
     }
 });

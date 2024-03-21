@@ -39,7 +39,7 @@ export function scrollToHash({ hash = '', scrollElement, duration = 1000 }) {
             // })
             const anchorDelta = anchor?.offsetLeft ?? 0
             const maxDelta = scrollElement.getBoundingClientRect().width
-            const percentage = Math.min(Math.max((anchorDelta / maxDelta) * -100, -75), 0)
+            const percentage = Math.min(Math.max((anchorDelta / maxDelta) * -100, -100), 0)
 
             scrollElement.dataset.scrolledAmount = (anchorDelta / 2).toString()
             scrollElement.dataset.percentage = percentage.toString()

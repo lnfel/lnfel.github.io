@@ -17,77 +17,77 @@
 
         scrollSelector.forEach((selector) => {
             const element = document.querySelector(selector)
-            if (element instanceof HTMLElement) {
-                element.onwheel = event => {
-                    const mediumScreen = window.matchMedia("(min-width: 768px)")
-                    if (mediumScreen.matches) {
-                        // const scrollTop = element.scrollTop
-                        // const scrollPercent = Math.round((scrollTop / (element.scrollHeight - element.offsetHeight)) * 100)
-                        // if (event.deltaY > 0 && scrollPercent !== 100 || event.deltaY < 0 && scrollPercent !== 0) {
-                        //     event.stopPropagation()
-                        //     scrollToHash({
-                        //         hash: element.parentElement?.id ? `#${element.parentElement.id}` : '',
-                        //         scrollElement: document.querySelector('main')
-                        //     })
-                        // }
-                        // console.log({
-                        //     scrollTop: element.scrollTop,
-                        //     scrollPercent,
-                        //     scrollHeight: element.scrollHeight
-                        // })
+            // if (element instanceof HTMLElement) {
+            //     element.onwheel = event => {
+            //         const mediumScreen = window.matchMedia("(min-width: 768px)")
+            //         if (mediumScreen.matches) {
+            //             const scrollTop = element.scrollTop
+            //             const scrollPercent = Math.round((scrollTop / (element.scrollHeight - element.offsetHeight)) * 100)
+            //             if (event.deltaY > 0 && scrollPercent !== 100 || event.deltaY < 0 && scrollPercent !== 0) {
+            //                 event.stopPropagation()
+            //                 scrollToHash({
+            //                     hash: element.parentElement?.id ? `#${element.parentElement.id}` : '',
+            //                     scrollElement: document.querySelector('main')
+            //                 })
+            //             }
+            //             console.log({
+            //                 scrollTop: element.scrollTop,
+            //                 scrollPercent,
+            //                 scrollHeight: element.scrollHeight
+            //             })
 
-                        const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import("$lib/utils/dom").LegacyWheelEvent} */ (event))
-                        element.dataset.scrolledAmount = (Number(element.dataset.scrolledAmount ?? 0) + normalizedWheel.pixelY).toString()
-                        const wheelDelta = Number(element.dataset.scrolledAmount)
-                        const maxDelta = element.offsetHeight / 2
-                        if (wheelDelta < 0) element.dataset.scrolledAmount = '0';
-                        if (wheelDelta >= maxDelta) element.dataset.scrolledAmount = maxDelta.toString();
-                        const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -50), 0)
-                        element.dataset.percentage = percentage.toString()
-                        // debug = {
-                        //     normalizedWheel,
-                        //     scroll: {
-                        //         wheelDelta,
-                        //         maxDelta,
-                        //         percentage,
-                        //         deltaY: event.deltaY
-                        //     },
-                        //     element: {
-                        //         scrolledAmount: element.dataset.scrolledAmount,
-                        //         percentage: element.dataset.percentage
-                        //     }
-                        // }
-                        // console.log(debug)
+            //             const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import("$lib/utils/dom").LegacyWheelEvent} */ (event))
+            //             element.dataset.scrolledAmount = (Number(element.dataset.scrolledAmount ?? 0) + normalizedWheel.pixelY).toString()
+            //             const wheelDelta = Number(element.dataset.scrolledAmount)
+            //             const maxDelta = element.offsetHeight / 2
+            //             if (wheelDelta < 0) element.dataset.scrolledAmount = '0';
+            //             if (wheelDelta >= maxDelta) element.dataset.scrolledAmount = maxDelta.toString();
+            //             const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -50), 0)
+            //             element.dataset.percentage = percentage.toString()
+            //             debug = {
+            //                 normalizedWheel,
+            //                 scroll: {
+            //                     wheelDelta,
+            //                     maxDelta,
+            //                     percentage,
+            //                     deltaY: event.deltaY
+            //                 },
+            //                 element: {
+            //                     scrolledAmount: element.dataset.scrolledAmount,
+            //                     percentage: element.dataset.percentage
+            //                 }
+            //             }
+            //             console.log(debug)
 
-                        // if (event.deltaY > 0 && percentage !== -50 || event.deltaY < 0 && percentage !== 0) {
-                        //     event.preventDefault()
-                        //     event.stopPropagation()
-                        //     element.animate({
-                        //         transformOrigin: 'center',
-                        //         top: `${Math.abs(percentage)}%`,
-                        //         transform: `translate(0%, ${percentage}%)`
-                        //     }, { duration: 2000, fill: "forwards" })
-                        //     scrollToHash({
-                        //         hash: element.parentElement?.id ? `#${element.parentElement.id}` : '',
-                        //         scrollElement: document.querySelector('main'),
-                        //         duration: 3000
-                        //     })
-                        // }
-                    }
-                    // if (event.deltaY > 0 && scrollPercent === 100) {
-                    //     scrollToHash({
-                    //         hash: element.nextElementSibling ? `#${element.nextElementSibling?.id}` : '',
-                    //         scrollElement: document.querySelector('main')
-                    //     })
-                    // }
-                    // if (event.deltaY < 0 && scrollPercent === 0) {
-                    //     scrollToHash({
-                    //         hash: element.previousElementSibling ? `#${element.previousElementSibling?.id}` : '',
-                    //         scrollElement: document.querySelector('main')
-                    //     })
-                    // }
-                }
-            }
+            //             if (event.deltaY > 0 && percentage !== -50 || event.deltaY < 0 && percentage !== 0) {
+            //                 event.preventDefault()
+            //                 event.stopPropagation()
+            //                 element.animate({
+            //                     transformOrigin: 'center',
+            //                     top: `${Math.abs(percentage)}%`,
+            //                     transform: `translate(0%, ${percentage}%)`
+            //                 }, { duration: 2000, fill: "forwards" })
+            //                 scrollToHash({
+            //                     hash: element.parentElement?.id ? `#${element.parentElement.id}` : '',
+            //                     scrollElement: document.querySelector('main'),
+            //                     duration: 3000
+            //                 })
+            //             }
+            //         }
+            //         if (event.deltaY > 0 && scrollPercent === 100) {
+            //             scrollToHash({
+            //                 hash: element.nextElementSibling ? `#${element.nextElementSibling?.id}` : '',
+            //                 scrollElement: document.querySelector('main')
+            //             })
+            //         }
+            //         if (event.deltaY < 0 && scrollPercent === 0) {
+            //             scrollToHash({
+            //                 hash: element.previousElementSibling ? `#${element.previousElementSibling?.id}` : '',
+            //                 scrollElement: document.querySelector('main')
+            //             })
+            //         }
+            //     }
+            // }
         })
     })
 

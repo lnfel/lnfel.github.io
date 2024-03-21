@@ -38,18 +38,20 @@
      */
     const wheelHandler = (event) => {
         const main = document.querySelector('main')
-        if (main instanceof HTMLElement) {
+        const lastSection = main?.lastElementChild
+        if (main instanceof HTMLElement && lastSection instanceof HTMLElement) {
             const mediumScreen = window.matchMedia("(min-width: 768px)")
             if (mediumScreen.matches) {
                 event.preventDefault()
                 const normalizedWheel = normalizeWheel(/** @type {WheelEvent & import("$lib/utils/dom").LegacyWheelEvent} */ (event))
                 main.dataset.scrolledAmount = (Number(main.dataset.scrolledAmount) + normalizedWheel.pixelY).toString()
                 const wheelDelta = Number(main.dataset.scrolledAmount)
-                const maxDelta = main.getBoundingClientRect().width / 2 // main.getBoundingClientRect().width
+                const maxDelta = (main.offsetWidth) / 2
 
                 if (wheelDelta < 0) main.dataset.scrolledAmount = '0';
                 if (wheelDelta >= maxDelta) main.dataset.scrolledAmount = maxDelta.toString();
-                const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, -75), 0)
+                const maxPercentage = ((lastSection.offsetLeft / 2) / maxDelta) * -100
+                const percentage = Math.min(Math.max((wheelDelta / maxDelta) * -100, maxPercentage), 0)
 
                 main.dataset.percentage = percentage.toString()
 

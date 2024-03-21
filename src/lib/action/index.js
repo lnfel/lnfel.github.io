@@ -6,7 +6,6 @@
 export const classList = (node, classes) => {
     const tokens = Array.isArray(classes) ? classes : classes.split(" ")
     node.classList.add(...tokens)
-    console.log(tokens)
 
     return {
         destroy() {

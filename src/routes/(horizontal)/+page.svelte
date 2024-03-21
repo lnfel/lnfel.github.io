@@ -177,7 +177,7 @@
 <section id="projects" class="w-screen md:w-[max-content] md:h-[100dvh] shrink-0 flex px-4 py-6 pt-[9rem] md:p-20">
     <div class="md:w-[7rem]"></div>
     <!-- h-full md:overflow-y-auto scroll-smooth -->
-    <div class="md:flex items-center">
+    <div class="flex-grow md:flex items-center">
         <div class="section-content h-[max-content] px-6 space-y-4">
             <!-- sticky top-0 z-10  -->
             <h1 class="w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">Projects</h1>
@@ -186,9 +186,10 @@
                     {#each projects as project}
                         <!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-interactions -->
                         <!-- https://github.com/dimsemenov/PhotoSwipe/discussions/2091 -->
-                        <li on:keydown={triggerPSWP} tabindex="0" aria-label="{project.title} Project: {project.description}" data-pswp-width="2500" data-pswp-height="1200" class="project-card w-full h-[max-content] relative overflow-hidden select-none outline-none border border-slate-500">
-                            <a href={project.imageURL} target="_blank" rel="noreferrer" data-pswp-width="2500" data-pswp-height="1200" aria-hidden="true" class="pswp-link hidden">{ project.title }</a>
-                            <img loading="lazy" aria-hidden="true" src={project.imageURL} alt={project.alt} draggable="false" class="project-card-img md:h-96 object-cover">
+                        <button aria-label="{project.title} Project: {project.description}" data-image-url={project.imageURL} data-image-width="2500" data-image-height="1200" class="project-card w-full h-[max-content] relative text-left overflow-hidden select-none outline-none border border-slate-500">
+                            <!-- <a href={project.imageURL} target="_blank" rel="noreferrer" data-pswp-width="2500" data-pswp-height="1200" aria-hidden="true" class="pswp-link hidden">{ project.title }</a> -->
+                            <!-- loading="lazy" -->
+                            <img src={project.imageURL} aria-hidden="true" alt={project.alt} width="2500" height="1200" draggable="false" class="project-card-img max-w-[min-content] md:h-96 object-cover">
                             <div class="project-card-title font-zenless-copy select-none px-4 py-4">
                                 <div class="flex items-center justify-between">
                                     <a href={project.pageURL} aria-label={project.internalLinkLabel} class="project-internal-link text-xl md:text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">
@@ -202,7 +203,7 @@
                                     <p class="project-card-description text-xs md:text-sm text-pretty">{project.description}</p>
                                 </div>
                             </div>
-                        </li>
+                        </button>
                     {/each}
                 </ul>
             <!-- </div> -->

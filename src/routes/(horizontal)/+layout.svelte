@@ -38,6 +38,15 @@
             pswpModule: () => import('photoswipe')
         })
 
+        lightbox.addFilter('domItemData', (itemData, element, linkElement) => {
+            if (element) {
+                itemData.src = element.dataset.imageUrl
+                itemData.width = Number(element.dataset.imageWidth)
+                itemData.height = Number(element.dataset.imageHeight)
+            }
+            return itemData
+        })
+
         lightbox.init()
 
         if (parallax instanceof HTMLElement && main instanceof HTMLElement && projects instanceof HTMLElement) {
@@ -148,7 +157,7 @@
 </Header>
 
 <!-- overflow-hidden is needed when scrolling with native scroll -->
-<main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] h-screen md:static md:flex md:items-stretch md:h-full dark:text-white bg-indigo-50 dark:bg-slate-900 will-change-scroll">
+<main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] md:static md:flex md:items-stretch md:h-full dark:text-white bg-indigo-50 dark:bg-slate-900 will-change-scroll">
     <slot />
 </main>
 

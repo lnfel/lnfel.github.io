@@ -25,6 +25,7 @@
 		"@sveltejs/kit": "^2.5.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/dom-view-transitions": "^1.0.4",
+		"@types/reveal.js": "^5.0.1",
 		"@types/three": "^0.162.0",
 		"autoprefixer": "^10.4.18",
 		"eslint": "^8.28.0",
@@ -57,6 +58,7 @@
 		"onnxruntime-web": "^1.16.3",
 		"photoswipe": "^5.4.3",
 		"pyodide": "^0.25.0",
+		"reveal.js": "^5.0.5",
 		"three": "^0.161.0",
 		"transparent-background": "^1.5.0",
 		"tweakpane": "^4.0.3"

@@ -10,7 +10,7 @@
 		"sourceMap": true,
 		"strict": true,
         "moduleResolution": "bundler",
-        "types": ["@types/three", "@types/dom-view-transitions"]
+        "types": ["@types/three", "@types/dom-view-transitions", "@types/reveal.js"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias and https://kit.svelte.dev/docs/configuration#files
 	//

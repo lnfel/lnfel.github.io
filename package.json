@@ -43,6 +43,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@napi-rs/canvas": "^0.1.51",
 		"@threlte/core": "^7.1.2",
 		"@threlte/extras": "^8.8.1",
 		"@tweakpane/core": "^2.0.3",

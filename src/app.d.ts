@@ -15,6 +15,7 @@ declare global {
             title: string
             description: string
             imageURL: string
+            blurhash?: string
             alt: string
             pageURL: string
             externalURL: string

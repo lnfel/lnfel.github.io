@@ -9,6 +9,7 @@
     import Navigation from "$lib/components/Navigation.svelte"
     import Contact from "$lib/components/Contact.svelte"
     import LamyDebugbar from "lamy-debugbar"
+    import Blurhash from "$lib/components/Blurhash.svelte"
 
     let debug = {}
 
@@ -182,14 +183,18 @@
             <!-- sticky top-0 z-10  -->
             <h1 class="w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">Projects</h1>
             <!-- <div class="max-h-[24rem] overflow-y-scroll"> -->
-                <ul class="project-grid grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-20">
-                    {#each projects as project}
+                <ul class="project-grid h-full md:h-96 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-20">
+                    {#each projects as project, i}
                         <!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-interactions -->
                         <!-- https://github.com/dimsemenov/PhotoSwipe/discussions/2091 -->
-                        <button aria-label="{project.title} Project: {project.description}" data-image-url={project.imageURL} data-image-width="2500" data-image-height="1200" class="project-card w-full h-[max-content] relative text-left overflow-hidden select-none outline-none border border-slate-500">
-                            <!-- <a href={project.imageURL} target="_blank" rel="noreferrer" data-pswp-width="2500" data-pswp-height="1200" aria-hidden="true" class="pswp-link hidden">{ project.title }</a> -->
-                            <!-- loading="lazy" -->
-                            <img src={project.imageURL} aria-hidden="true" alt={project.alt} width="2500" height="1200" draggable="false" class="project-card-img max-w-[min-content] md:h-96 object-cover">
+                        <!-- on:click={triggerPSWP} -->
+                        <button aria-label="{project.title} Project: {project.description}" data-image-url={project.imageURL} data-image-width="2500" data-image-height="1200" style="background-image: url(/api/projects/{project.title.split(" ").join("-").toLowerCase()}/blurhash); background-size: cover;" class="project-card md:h-72 relative text-left overflow-hidden select-none outline-none border border-slate-500">
+                            <Blurhash
+                                src={project.imageURL}
+                                alt={project.alt}
+                                width={2500} height={1200}
+                                draggable="false"
+                                class="project-card-img md:max-w-[min-content] md:h-72 object-cover opacity-0" />
                             <div class="project-card-title font-zenless-copy select-none px-4 py-4">
                                 <div class="flex items-center justify-between">
                                     <a href={project.pageURL} aria-label={project.internalLinkLabel} class="project-internal-link text-xl md:text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">
@@ -352,7 +357,7 @@
     } */
 
     /* Projects */
-    .project-card-img {
+    :global(.project-card-img) {
         will-change: object-position,transform;
         transition: all 500ms ease-in-out;
     }
@@ -416,11 +421,11 @@
         transition: all 200ms ease-in-out;
     }
 
-    .project-card:hover img, .project-card:focus img,
-    .project-card:has(a.project-internal-link:hover) img,
-    .project-card:has(a.project-internal-link:focus) img,
-    .project-card:has(a.project-external-link:hover) img,
-    .project-card:has(a.project-external-link:focus) img {
+    :global(.project-card:hover img), :global(.project-card:focus img),
+    :global(.project-card:has(a.project-internal-link:hover) img),
+    :global(.project-card:has(a.project-internal-link:focus) img),
+    :global(.project-card:has(a.project-external-link:hover) img),
+    :global(.project-card:has(a.project-external-link:focus) img) {
         transform: scale(1.1);
         transition: all 200ms ease-in-out;
     }

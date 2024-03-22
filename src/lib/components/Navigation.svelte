@@ -139,7 +139,7 @@
         <!-- flex flex-col justify-between -->
         <nav class="menu w-full h-full md:h-[min-content] md:p-20">
             <div class="menu-links-container flex flex-col gap-2 px-4 py-6 pt-36 md:pt-0 md:pl-[5rem]">
-                {#each menu[(new URL($page.url)).pathname] as { text, href, disabled }}
+                {#each menu?.[(new URL($page.url)).pathname] ?? [] as { text, href, disabled }}
                     <Navlink href="{base}{href}" {text} {disabled} aria-label="Go to {text.toLowerCase()} section." />
                 {/each}
             </div>

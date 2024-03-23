@@ -288,7 +288,7 @@
             <h1 class="font-zenless-title text-4xl md:text-5xl py-2">Contact</h1>
             <p class="font-zenless-copy text-2xl max-w-[60ch]">Need a person on your team? Hit me up on my socials!</p>
             <div class="py-4">
-                <ul class="contact-container font-zenless-copy md:text-2xl space-y-4">
+                <ul class="contact-container font-zenless-copy text-sm md:text-2xl space-y-4">
                     <Contact name="github" text="github.com/lnfel" href="https://github.com/lnfel">
                         <svg slot="icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-10 md:h-10">
                             <title>GitHub</title>

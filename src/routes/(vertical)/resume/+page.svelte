@@ -12,6 +12,21 @@
 
     /**
      * @param {Date} startDate
+     * @param {Date} endDate
+     * 
+     * @see {@link https://www.w3resource.com/javascript-exercises/javascript-date-exercise-49.php | Javascript date exercise 49}
+     */
+    function yearsPast(startDate, endDate) {
+        // Calculate the difference in milliseconds between the two dates
+        let diff = (startDate.getTime() - endDate.getTime()) / 1000
+        // Convert the difference from milliseconds to days
+        diff /= (60 * 60 * 24)
+        // Calculate the approximate number of years by dividing the difference in days by the average number of days in a year (365.25)
+        return Math.abs(Math.round(diff / 365.25))
+    }
+
+    /**
+     * @param {Date} startDate
      * @param {Date} currentDate
      */
     function monthsPast(startDate, currentDate) {
@@ -69,7 +84,7 @@
                     Summary
                 </h2>
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">
-                    Full-stack Web Developer with {monthsPast(new Date('12-01-2018'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. Been playing around Sveltekit this year. During free time I tinker with Three js framework and learn what is happening in web development space.
+                    Full-stack Web Developer with {yearsPast(new Date('12-01-2018'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. Been playing around Sveltekit this year. During free time I tinker with Three js framework and learn what is happening in web development space.
                 </p>
             </div>
 

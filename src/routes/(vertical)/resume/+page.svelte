@@ -96,7 +96,7 @@
                     Summary
                 </h2>
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">
-                    Full-stack Web Developer with {yearsPast(new Date('12-01-2018'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. Been playing around Sveltekit this year. During free time I tinker with Three js framework and learn what is happening in web development space.
+                    Full-stack Web Developer with {yearsPast(new Date('12-01-2018'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. Recently made <a href="https://github.com/lnfel/aerial" class="text-indigo-500">Aerial</a>, an sveltekit app that extracts dominant colors in documents, pdf and images using k-means clustering. During free time I tinker with Three js framework or get news on latest hapennings in web development space.
                 </p>
             </div>
 
@@ -119,7 +119,7 @@
                             <li>Improved Lighthouse score to 90 by implementing optimization patterns and best practices</li>
                             <li>Implemented Continuous Integration and Delivery using Github Actions</li>
                             <li>Pioneered the company's second project called Ghostprinter, where I made an internal service I called Aerial that extracts dominant colors in images, and documents (mainly docx and pdf files). Rendered using Sveltekit</li>
-                            <li>Implemented Ghostprinter back-end API using ElysiaJS, where I got a chance to be invited as one of the community ambassadors.</li>
+                            <li>Implemented Ghostprinter back-end API using <a href="https://elysiajs.com/">ElysiaJS</a>, where I got a chance to be invited as one of the community ambassadors.</li>
                             <li>Aerial is publicly available: <a href="https://github.com/lnfel/aerial">https://github.com/lnfel/aerial</a></li>
                         </ul>
                     </li>

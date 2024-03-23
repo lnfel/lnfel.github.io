@@ -209,12 +209,17 @@
                         <!-- https://github.com/dimsemenov/PhotoSwipe/discussions/2091 -->
                         <!-- on:click={triggerPSWP} -->
                         <button aria-label="{project.title} Project: {project.description}" data-image-url={project.imageURL} data-image-width="2500" data-image-height="1200" style="background-image: url(/api/projects/{project.title.split(" ").join("-").toLowerCase()}/blurhash); background-size: cover;" class="project-card md:h-72 relative text-left overflow-hidden select-none outline-none border border-slate-500">
+                            <!--
+                                Firefox strictly follows width and height attributes,
+                                ignoring things such as `max-width: min-content;`
+                            -->
+                            <!-- width={2500} height={1200} -->
                             <Blurhash
                                 src={project.imageURL}
                                 alt={project.alt}
-                                width={2500} height={1200}
+                                width={600} height={288}
                                 draggable="false"
-                                class="project-card-img md:max-w-[min-content] md:h-72 object-cover opacity-0" />
+                                class="project-card-img w-full md:min-w-[600px] md:max-w-[min-content] md:h-72 object-cover opacity-0" />
                             <div class="project-card-title font-zenless-copy select-none px-4 py-4">
                                 <div class="flex items-center justify-between">
                                     <a href={project.pageURL} aria-label={project.internalLinkLabel} class="project-internal-link text-xl md:text-2xl outline-none hover:underline focus:underline hover:text-tulip-tree-400 focus:text-tulip-tree-400">

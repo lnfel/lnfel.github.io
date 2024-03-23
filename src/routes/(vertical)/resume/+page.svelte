@@ -1,5 +1,17 @@
 <script>
 	import { onMount } from "svelte"
+    import { afterNavigate } from "$app/navigation"
+
+    afterNavigate(async (navigation) => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'instant'
+        })
+        const section = document.querySelector('section')
+        if (section) {
+            section.classList.remove('hidden-village')
+        }
+    })
 
     /** @type {any} */
     let html2pdf

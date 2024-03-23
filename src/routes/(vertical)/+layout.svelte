@@ -1,7 +1,7 @@
 <script>
     import "$lib/app.css"
     import { onMount } from "svelte"
-    import { onNavigate, afterNavigate } from "$app/navigation"
+    import { onNavigate } from "$app/navigation"
     import { classToggle } from "$lib/utils"
 
     import Header from "$lib/components/Header.svelte"
@@ -15,17 +15,6 @@
                 await navigation.complete
             })
         })
-    })
-
-    afterNavigate(async (navigation) => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'instant'
-        })
-        const section = document.querySelector('section')
-        if (section) {
-            section.classList.remove('hidden-village')
-        }
     })
 
     onMount(() => {

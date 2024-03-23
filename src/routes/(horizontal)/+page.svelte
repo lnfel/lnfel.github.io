@@ -134,7 +134,7 @@
     <!-- h-full md:overflow-y-auto scroll-smooth -->
     <!-- space-y-10 -->
     <div class="md:flex items-center">
-        <div class="section-content md:flex gap-96 h-[max-content] px-6 md:p-20">
+        <div class="section-content md:flex gap-96 px-6 md:p-20 space-y-20 md:space-y-0">
             <article class="space-y-2">
                 <h1 class="w-full font-zenless-title text-4xl md:text-5xl dark:bg-slate-900 py-2">About</h1>
                 <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
@@ -142,11 +142,13 @@
                 </p>
             </article>
 
-            <article class="space-y-2">
-                <h2 class="w-full font-zenless-title text-2xl md:text-3xl dark:bg-slate-900 py-2">Technologies and development tools I am familiar with</h2>
-                <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
-                    Here are a list of languages and technologies that I am familiar and worked with in the past up until now:
-                </p>
+            <article class="space-y-6">
+                <div class="space-y-2">
+                    <h2 class="w-full font-zenless-title text-2xl md:text-3xl dark:bg-slate-900 py-2">Technologies and development tools I am familiar with</h2>
+                    <p class="font-zenless-copy text-xl leading-normal max-w-[60ch]">
+                        Here is a list of languages and technologies that I am familiar and worked with in the past up until now:
+                    </p>
+                </div>
                 <div class="pt-2 space-y-2">
                     <h3 class="font-zenless-title text-lg">Languages</h3>
                     <ul class="font-zenless-copy flex flex-wrap items-center gap-2 text-xl leading-normal max-w-[60ch]">
@@ -158,7 +160,7 @@
                     </ul>
                 </div>
                 <div class="pt-2 space-y-2">
-                    <h3 class="font-zenless-title text-lg">Meta framework</h3>
+                    <h3 class="font-zenless-title text-lg">Framework</h3>
                     <ul class="font-zenless-copy flex flex-wrap items-center gap-2 text-xl leading-normal max-w-[60ch]">
                         {#each metaFramework as framework}
                             <li class="flex items-center gap-2 leading-none {framework.bgColor} {framework.textColor} px-2 py-1">

@@ -139,7 +139,8 @@
 </Header>
 
 <!-- overflow-hidden is needed when scrolling with native scroll -->
-<main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] md:static md:flex md:items-stretch md:h-full dark:text-white bg-indigo-50 dark:bg-slate-900 will-change-scroll">
+<!-- will-change-scroll -->
+<main data-scrolled-amount="0" data-percentage="0" class="relative w-[max-content] md:static md:flex md:items-stretch md:h-full text-slate-900 dark:text-white bg-indigo-50 dark:bg-slate-900">
     <slot />
 </main>
 

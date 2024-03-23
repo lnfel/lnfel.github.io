@@ -153,7 +153,7 @@
     </div>
 </div>
 
-<style>
+<style lang="postcss">
     .stellar-container {
         opacity: 0;
         transition: 300ms opacity 500ms ease-in-out;
@@ -237,10 +237,9 @@
             pointer-events: all;
         }
         .stellar-colored {
-            background: linear-gradient(to right, transparent 80%, rgb(15 23 42 / 1) 100%),
-                radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
+            background: radial-gradient(transparent 0.75px, theme(colors.indigo.50 / 0.2) 0.75px),
                 url('/img/ui/stellar-bg/stellar-stellar.webp');
-            background-size: cover, 4px 4px, cover;
+            background-size: 4px 4px, cover;
             backdrop-filter: saturate(50%) blur(4px);
             background-position: bottom left;
 
@@ -253,6 +252,14 @@
 
             transition: -webkit-mask-position;
             animation: 500ms stellar-fade 1.5s steps(5) forwards;
+        }
+        @media (prefers-color-scheme: dark) {
+            .stellar-colored {
+                background: linear-gradient(to right, transparent 80%, rgb(15 23 42 / 1) 100%),
+                    radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
+                    url('/img/ui/stellar-bg/stellar-stellar.webp');
+                background-size: cover, 4px 4px, cover;
+            }
         }
     }
 

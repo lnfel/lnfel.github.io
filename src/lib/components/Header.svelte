@@ -39,9 +39,11 @@
         initial-value: transparent;
         inherits: false;
     }
-    :global(header) {
-        /* rgb(15 23 42 / 0.5) */
-        background: radial-gradient(transparent 0.75px, var(--header-bg) 0.75px);
-        background-size: 4px 4px;
+    @media (prefers-color-scheme: dark) {
+        :global(header) {
+            /* rgb(15 23 42 / 0.5) */
+            background: radial-gradient(transparent 0.75px, var(--header-bg) 0.75px);
+            background-size: 4px 4px;
+        }
     }
 </style>

@@ -129,7 +129,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </svelte:head>
 
-<svelte:body use:classList={"bg-indigo-50 dark:bg-slate-900 scroll-smooth"}/>
+<svelte:body use:classList={"bg-indigo-50 dark:bg-slate-900 md:overflow-hidden scroll-smooth"}/>
 
 <Header class="bg-slate-900/50">
     <button on:click={toggleMenu} type="button" class="md:hidden text-tulip-tree-400 outline-none hover:bg-tulip-tree-400 focus:bg-tulip-tree-400 hover:text-slate-900 focus:text-slate-900 transition-colors p-2">

@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte"
     import { base } from "$app/paths"
+    import PhotoSwipeLightbox from 'photoswipe/lightbox'
     import { scrollToHash } from "$lib/utils/navigation"
     import { normalizeWheel } from "$lib/utils/dom"
 
@@ -14,6 +15,23 @@
     let debug = {}
 
     onMount(() => {
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '.project-grid',
+            children: '.project-card',
+            pswpModule: () => import('photoswipe')
+        })
+
+        lightbox.addFilter('domItemData', (itemData, element, linkElement) => {
+            if (element) {
+                itemData.src = element.dataset.imageUrl
+                itemData.width = Number(element.dataset.imageWidth)
+                itemData.height = Number(element.dataset.imageHeight)
+            }
+            return itemData
+        })
+
+        lightbox.init()
+        
         const scrollSelector = ['#projects .section-content', '#about .section-content'] //'.project-grid'
 
         scrollSelector.forEach((selector) => {

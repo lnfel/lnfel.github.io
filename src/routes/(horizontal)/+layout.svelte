@@ -4,7 +4,6 @@
 
     import { onMount } from "svelte"
     import { page } from "$app/stores"
-    import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
     import { classToggle } from "$lib/utils"
     import { normalizeWheel } from "$lib/utils/dom"
@@ -31,23 +30,6 @@
         const main = document.querySelector('main')
         const projects = document.querySelector('#projects')
         const parallax = document.querySelector('#parallax')
-
-        const lightbox = new PhotoSwipeLightbox({
-            gallery: '.project-grid',
-            children: '.project-card',
-            pswpModule: () => import('photoswipe')
-        })
-
-        lightbox.addFilter('domItemData', (itemData, element, linkElement) => {
-            if (element) {
-                itemData.src = element.dataset.imageUrl
-                itemData.width = Number(element.dataset.imageWidth)
-                itemData.height = Number(element.dataset.imageHeight)
-            }
-            return itemData
-        })
-
-        lightbox.init()
 
         if (parallax instanceof HTMLElement && main instanceof HTMLElement && projects instanceof HTMLElement) {
             main.onwheel = event => {

@@ -69,7 +69,7 @@
                     Summary
                 </h2>
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">
-                    Full-stack Web Developer with {monthsPast(new Date('08-01-2020'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. Been playing around Sveltekit this year. During free time I tinker with Three js framework and learn what is happening in web development space.
+                    Full-stack Web Developer with {monthsPast(new Date('12-01-2018'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. Been playing around Sveltekit this year. During free time I tinker with Three js framework and learn what is happening in web development space.
                 </p>
             </div>
 

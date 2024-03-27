@@ -6,14 +6,26 @@
         const nav = document.querySelector('nav')
         const observer = new IntersectionObserver((entries) => {
             const header = document.querySelector('header')
+            const floatingNavLinks = document.querySelectorAll('.floating-nav-link')
+            const mediumScreen = window.matchMedia("(min-width: 768px)")
             if (header && window.location.pathname === "/") {
                 const logoText = /** @type {HTMLHeadingElement} */ (header.querySelector('.logo-text'))
                 if (entries[0].intersectionRatio <= 0.1) {
                     header.style.backdropFilter = 'saturate(50%) blur(4px)'
                     header.style.cssText = '--header-bg: rgb(15 23 42 / 0.5)'
+                    if (mediumScreen.matches) {
+                        floatingNavLinks?.forEach((floatingNavLink) => {
+                            floatingNavLink.classList.add('enter')
+                        })
+                    }
                 } else {
                     header.style.backdropFilter = 'none'
                     header.style.cssText = '--header-bg: transparent'
+                    if (mediumScreen.matches) {
+                        floatingNavLinks?.forEach((floatingNavLink) => {
+                            floatingNavLink.classList.remove('enter')
+                        })
+                    }
                 }
             }
         }, {

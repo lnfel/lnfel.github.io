@@ -10,6 +10,10 @@
     import { menu } from "$lib/utils/navigation"
 
     import Navlink from "$lib/components/Navlink.svelte"
+    import FloatingNav from "./FloatingNav.svelte"
+
+    /** @type {FloatingNav} */
+    let floatingNav
 
     /**
      * https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
@@ -77,6 +81,21 @@
     }
 
     onMount(() => {
+        if ($page.route.id === '/(horizontal)') {
+            floatingNav = new FloatingNav({
+                target: document.body,
+                props: {
+                    navlinks: menu?.[(new URL($page.url)).pathname] ?? []
+                }
+            })
+        }
+        /**
+         * https://www.darrenlester.com/blog/why-fixed-position-element-not-relative-to-viewport
+         */
+        // const floatingNav = document.createElement('div')
+        // const floatingNavClassList = "fixed left-[50%] -translate-x-1/2 bottom-0 bg-white p-10"
+        // floatingNav.classList.add(...floatingNavClassList.split(" "))
+        // document.body.append(floatingNav)
         decryptAnimation({ target: '.menu-link' })
         
         const main = document.querySelector('main')
@@ -90,13 +109,16 @@
          * Hash navigation
          * Clicking navigation links auto scrolls to anchored section
          */
-        const menuLinks = /** @type {NodeListOf<HTMLAnchorElement>} */ (document.querySelectorAll('.menu-link'))
-        menuLinks.forEach((link) => {
-            link.onclick = /** @type {((this: GlobalEventHandlers, ev: MouseEvent) => any) | null} */ (navigateToHash({ scrollElement: main }))
+        const navlinks = ['.menu-link', '.floating-nav-link']
+        navlinks.forEach((link) => {
+            const links = /** @type {NodeListOf<HTMLAnchorElement>} */ (document.querySelectorAll(link))
+            links.forEach((link) => {
+                link.onclick = /** @type {((this: GlobalEventHandlers, ev: MouseEvent) => any) | null} */ (navigateToHash({ scrollElement: main }))
+            })
         })
 
-        const links = ['.project-internal-link', '.project-external-link']
-        links.forEach((link) => {
+        const projectlinks = ['.project-internal-link', '.project-external-link']
+        projectlinks.forEach((link) => {
             const nodelist = /** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll(link))
             nodelist.forEach((element) => {
                 element.onclick = (event) => {
@@ -127,6 +149,7 @@
         if (browser) {
             window.removeEventListener('wheel', wheelHandler)
         }
+        floatingNav?.$destroy()
     })
 </script>
 

@@ -2,7 +2,8 @@ import { pushState } from "$app/navigation"
 import { classToggle } from "$lib/utils"
 
 /**
- * @type {Record<String, { text: String, href: String, disabled?: Boolean }[]>}
+ * @typedef {{ text: String, href: String, disabled?: Boolean }} NavLink
+ * @type {Record<String, NavLink[]>}
  */
 export const menu = {
     '/': [

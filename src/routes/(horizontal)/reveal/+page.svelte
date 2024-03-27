@@ -3,7 +3,7 @@
     import "../../../../node_modules/reveal.js/dist/theme/black.css"
 
     import { onMount } from "svelte"
-    import Reveal from "reveal.js"
+    // import Reveal from "reveal.js"
 
     import { projects, languages, metaFramework, tooling } from "$lib/content"
 
@@ -12,7 +12,8 @@
 
     /** @type {Reveal.Api} */
     let deck
-    onMount(() => {
+    onMount(async () => {
+        const Reveal = (await import('reveal.js')).default
         deck = new Reveal({
             // view: 'scroll',
             progress: false,

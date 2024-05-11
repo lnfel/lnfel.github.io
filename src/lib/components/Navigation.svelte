@@ -288,7 +288,7 @@
 
     @media (min-width: 1280px) {
         .stellar-bg {
-            height: auto;
+            height: 100%;
         }
     }
 </style>

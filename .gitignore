@@ -19,6 +19,3 @@ vite.config.ts.timestamp-*
 
 # Dev only
 notes.md
-
-# Exlcude temporarily
-README.md

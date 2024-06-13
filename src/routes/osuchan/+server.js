@@ -23,4 +23,24 @@ export const GET = async ({ fetch }) => {
     //     seconds: Number(seconds.toFixed())
     // })
     return json(osuchanData)
+
+    // client_credentials grant type is not even implemented yet since 2015
+    // https://github.com/ppy/osu-api/issues/102#issuecomment-442548477
+    // const clientCredentialsGrantResponse = await fetch('https://osu.ppy.sh/oauth/token', {
+    //     method: 'POST',
+    //     headers: {
+    //         "Accept": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         client_id: 32018,
+    //         client_secret: 'CG58oG8QdEaIPM82gVhGJ6CxYcr3TEPrkFMqSoNt',
+    //         grant_type: 'client_credentials',
+    //         scope: 'public'
+    //     })
+    // })
+
+    // const osuToken = await clientCredentialsGrantResponse.json()
+    // console.log({ osuToken, headers: clientCredentialsGrantResponse })
+
+    // return json({ osuToken })
 }

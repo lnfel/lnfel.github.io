@@ -10,6 +10,7 @@ export default defineConfig({
         noExternal: ['three']
     },
     server: {
+        host: '0.0.0.0',
         port: 7777
     },
     preview: {

@@ -24,6 +24,8 @@ export const GET = async ({ fetch }) => {
     // })
     return json(osuchanData)
 
+    // Osu oauth client (own clients)
+    // Token status: Revoked
     // client_credentials grant type is not even implemented yet since 2015
     // https://github.com/ppy/osu-api/issues/102#issuecomment-442548477
     // const clientCredentialsGrantResponse = await fetch('https://osu.ppy.sh/oauth/token', {
@@ -33,7 +35,7 @@ export const GET = async ({ fetch }) => {
     //     },
     //     body: JSON.stringify({
     //         client_id: 32018,
-    //         client_secret: 'CG58oG8QdEaIPM82gVhGJ6CxYcr3TEPrkFMqSoNt',
+    //         client_secret: '',
     //         grant_type: 'client_credentials',
     //         scope: 'public'
     //     })

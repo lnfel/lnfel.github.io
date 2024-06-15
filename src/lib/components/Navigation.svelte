@@ -11,6 +11,7 @@
 
     import Navlink from "$lib/components/Navlink.svelte"
     import FloatingNav from "./FloatingNav.svelte"
+    import StellarBg from "./StellarBG.svelte"
 
     /** @type {FloatingNav} */
     let floatingNav
@@ -154,12 +155,12 @@
 </script>
 
 <div class="stellar-container fixed inset-0 md:relative w-screen h-[100dvh] overflow-hidden shrink-0 z-20">
-    <div class="stellar-bg h-full relative">
+    <!-- <div class="stellar-bg h-full relative">
         <div class="stellar-colored"></div>
         <img src="/img/ui/stellar-bg/grayscale.webp" alt="" class="stellar-grayscale hidden md:block">
-    </div>
+    </div> -->
+    <StellarBg />
     <div class="menu-container absolute inset-0 z-30 flex items-center">
-        <!-- flex flex-col justify-between -->
         <nav class="menu w-full h-full md:h-[min-content] md:p-20">
             <div class="menu-links-container flex flex-col gap-2 px-4 py-6 pt-36 md:pt-0 md:pl-[5rem]">
                 {#each menu?.[(new URL($page.url)).pathname] ?? [] as { text, href, disabled }}
@@ -184,7 +185,7 @@
     :global(.stellar-container:not(:has(.menu-container.show))) {
         pointer-events: none;
     }
-    .stellar-colored {
+    /* .stellar-colored {
         position: absolute;
         inset: 0;
         background: radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
@@ -193,18 +194,18 @@
         backdrop-filter: saturate(50%) blur(4px);
         background-position: bottom left;
         pointer-events: none;
-    }
+    } */
     .stellar-container:has(.menu-container.show) {
         opacity: 1;
         transition: all 200ms ease-in-out;
     }
-    .stellar-grayscale {
+    /* .stellar-grayscale {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: bottom left;
-    }
-    @keyframes stellar-fade {
+    } */
+    /* @keyframes stellar-fade {
         0% {
             -webkit-mask-position: 0% 0%;
             mask-position: 0% 0%;
@@ -213,21 +214,6 @@
             -webkit-mask-position: 100% 0%;
             mask-position: 100% 0%;
         }
-    }
-    /* .menu-bg {
-        pointer-events: none;
-        opacity: 0;
-        background: radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
-            url(/img/stellar-stellar.jpeg);
-        background-size: 0px 0px, cover;
-        backdrop-filter: saturate(50%) blur(4px);
-        background-position: center, bottom left;
-        transition: 300ms all 500ms ease-in-out;
-    } */
-    /* .menu-bg:has(.menu-container.show) {
-        opacity: 1;
-        background-size: 4px 4px, cover;
-        transition: all 200ms ease-in-out;
     } */
     .menu-container {
         display: grid;
@@ -243,13 +229,6 @@
     }
 
     @media (min-width: 768px) {
-        /* .menu {
-            background: linear-gradient(to right, transparent 80%, rgb(15 23 42 / 1) 100%),
-                radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
-                url(/img/stellar-stellar.jpeg);
-            background-size: cover, 4px 4px, cover;
-            backdrop-filter: saturate(50%) blur(4px);
-        } */
         .menu-container {
             grid-template-rows: 1fr;
         }
@@ -259,7 +238,7 @@
         :global(.stellar-container:not(:has(.menu-container.show))) {
             pointer-events: all;
         }
-        .stellar-colored {
+        /* .stellar-colored {
             background: radial-gradient(transparent 0.75px, theme(colors.indigo.50 / 0.2) 0.75px),
                 url('/img/ui/stellar-bg/stellar-stellar.webp');
             background-size: 4px 4px, cover;
@@ -283,12 +262,12 @@
                     url('/img/ui/stellar-bg/stellar-stellar.webp');
                 background-size: cover, 4px 4px, cover;
             }
-        }
+        } */
     }
 
-    @media (min-width: 1280px) {
+    /* @media (min-width: 1280px) {
         .stellar-bg {
             height: 100%;
         }
-    }
+    } */
 </style>

@@ -63,8 +63,9 @@
                 main.animate({
                     transformOrigin: 'center',
                     left: `${Math.abs(percentage)}%`,
-                    transform: `translate(${percentage}%, 0% )`
-                }, { duration: 3000, fill: "forwards" })
+                    transform: `translate(${percentage}%, 0% )`,
+                    easing: 'cubic-bezier(0.5, 1, 0.89, 1)' // https://easings.net/#easeOutQuad
+                }, { duration: 300, fill: "forwards", easing: 'cubic-bezier(0.5, 1, 0.89, 1)' })
                 // const lamyDebugbar = document.querySelector('.lamy-debugbar')
                 // if (lamyDebugbar instanceof HTMLElement) {
                 //     console.log(main.getBoundingClientRect(), window.innerWidth)
@@ -178,6 +179,9 @@
 </div>
 
 <style lang="postcss">
+    :global(main) {
+        will-change: transform;
+    }
     .stellar-container {
         opacity: 0;
         transition: 300ms opacity 500ms ease-in-out;

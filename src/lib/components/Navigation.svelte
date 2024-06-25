@@ -11,7 +11,7 @@
 
     import Navlink from "$lib/components/Navlink.svelte"
     import FloatingNav from "./FloatingNav.svelte"
-    import StellarBg from "./StellarBG.svelte"
+    // import StellarBg from "./StellarBG.svelte"
 
     /** @type {FloatingNav} */
     let floatingNav
@@ -155,11 +155,11 @@
 </script>
 
 <div class="stellar-container fixed inset-0 md:relative w-screen h-[100dvh] overflow-hidden shrink-0 z-20">
-    <!-- <div class="stellar-bg h-full relative">
+    <div class="stellar-bg h-full relative">
         <div class="stellar-colored"></div>
-        <img src="/img/ui/stellar-bg/grayscale.webp" alt="" class="stellar-grayscale hidden md:block">
-    </div> -->
-    <StellarBg />
+        <!-- <img src="/img/ui/stellar-bg/grayscale.webp" alt="" class="stellar-grayscale hidden md:block"> -->
+    </div>
+    <!-- <StellarBg /> -->
     <div class="menu-container absolute inset-0 z-30 flex items-center">
         <nav class="menu w-full h-full md:h-[min-content] md:p-20">
             <div class="menu-links-container flex flex-col gap-2 px-4 py-6 pt-36 md:pt-0 md:pl-[5rem]">
@@ -185,7 +185,7 @@
     :global(.stellar-container:not(:has(.menu-container.show))) {
         pointer-events: none;
     }
-    /* .stellar-colored {
+    .stellar-colored {
         position: absolute;
         inset: 0;
         background: radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
@@ -194,7 +194,9 @@
         backdrop-filter: saturate(50%) blur(4px);
         background-position: bottom left;
         pointer-events: none;
-    } */
+        filter: grayscale(100);
+        animation: stellar-color 500ms 1.5s forwards;
+    }
     .stellar-container:has(.menu-container.show) {
         opacity: 1;
         transition: all 200ms ease-in-out;
@@ -215,6 +217,14 @@
             mask-position: 100% 0%;
         }
     } */
+    @keyframes stellar-color {
+        0% {
+            filter: grayscale(100);
+        }
+        100% {
+            filter: grayscale(0);
+        }
+    }
     .menu-container {
         display: grid;
         grid-template-rows: 0fr;
@@ -238,14 +248,14 @@
         :global(.stellar-container:not(:has(.menu-container.show))) {
             pointer-events: all;
         }
-        /* .stellar-colored {
+        .stellar-colored {
             background: radial-gradient(transparent 0.75px, theme(colors.indigo.50 / 0.2) 0.75px),
                 url('/img/ui/stellar-bg/stellar-stellar.webp');
             background-size: 4px 4px, cover;
             backdrop-filter: saturate(50%) blur(4px);
             background-position: bottom left;
 
-            -webkit-mask-image: url('/img/ui/stellar-bg/mask-6f.webp');
+            /* -webkit-mask-image: url('/img/ui/stellar-bg/mask-6f.webp');
             mask-image: url('/img/ui/stellar-bg/mask-6f.webp');
             -webkit-mask-size: cover;
             mask-size: cover;
@@ -253,7 +263,7 @@
             mask-position: 0% 0%;
 
             transition: -webkit-mask-position;
-            animation: 500ms stellar-fade 1.5s steps(5) forwards;
+            animation: 500ms stellar-fade 1.5s steps(5) forwards; */
         }
         @media (prefers-color-scheme: dark) {
             .stellar-colored {
@@ -262,7 +272,7 @@
                     url('/img/ui/stellar-bg/stellar-stellar.webp');
                 background-size: cover, 4px 4px, cover;
             }
-        } */
+        }
     }
 
     /* @media (min-width: 1280px) {

@@ -17,28 +17,30 @@
      */
     function coverImage(image: HTMLImageElement, type: "cover" | "contain" = 'cover') {
         const ctx = canvas?.getContext('2d')
-        if (ctx) {
+        const container: HTMLDivElement | null | undefined = canvas?.closest('.stellar-bg')
+        if (ctx && container) {
             const imageRatio = image.height / image.width
-            const windowRatio = window.innerHeight / window.innerWidth
+            const containerRatio = container.offsetHeight / container.offsetWidth
 
-            if ((imageRatio < windowRatio && type === 'contain') || (imageRatio > windowRatio && type === 'cover')) {
-                const height = window.innerWidth * imageRatio
-                ctx?.drawImage(image, 0, (window.innerHeight - height) / 2, window.innerWidth, height)
+            if ((imageRatio < containerRatio && type === 'contain') || (imageRatio > containerRatio && type === 'cover')) {
+                const height = container.offsetWidth * imageRatio
+                ctx?.drawImage(image, 0, (container.offsetHeight - height) / 2, container.offsetWidth, height)
             }
 
-            if ((imageRatio > windowRatio && type === 'contain') || (imageRatio < windowRatio && type === 'cover')) {
-                const width = window.innerWidth * windowRatio / imageRatio
-                ctx?.drawImage(image, 0, image.height, image.width, image.height, (window.innerWidth - width) / 2, 0, width, window.innerHeight)
+            if ((imageRatio > containerRatio && type === 'contain') || (imageRatio < containerRatio && type === 'cover')) {
+                const width = container.offsetWidth * containerRatio / imageRatio
+                ctx?.drawImage(image, 0, image.height, image.width, image.height, (container.offsetWidth - width) / 2, 0, width, container.offsetHeight)
             }
         }
     }
 
     function resize() {
-        if (canvas) {
-            canvas.width = window.innerWidth
-            canvas.height = window.innerHeight
-            canvas.style.width = `${window.innerWidth}px`
-            canvas.style.height = `${window.innerHeight}px`
+        const container: HTMLDivElement | null | undefined = canvas?.closest('.stellar-bg')
+        if (canvas && container) {
+            canvas.width = container.offsetWidth
+            canvas.height = container.offsetHeight
+            canvas.style.width = `${container.offsetWidth}px`
+            canvas.style.height = `${container.offsetHeight}px`
         }
     }
 
@@ -69,7 +71,8 @@
 
 <div class="stellar-bg h-full relative">
     <div class="stellar-filter absolute inset-0 z-[1] pointer-events-none"></div>
-    <canvas bind:this={canvas} class="stellar-img absolute inset-0 w-full min-h-dvh"></canvas>
+    <!-- w-full min-h-dvh -->
+    <canvas bind:this={canvas} class="stellar-img absolute inset-0 w-full"></canvas>
     <img src="/img/ui/stellar-bg/grayscale.webp" alt="" class="stellar-grayscale hidden md:block w-full h-full object-cover object-[center_left]">
 </div>
 

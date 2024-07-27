@@ -5,7 +5,7 @@
 
     import LinkPreview from "$lib/components/LinkPreview.svelte"
 
-    let introAnimation = 'disabled'
+    let introAnimation = 'enabled'
 
     afterNavigate(async (navigation) => {
         // window.scrollTo({

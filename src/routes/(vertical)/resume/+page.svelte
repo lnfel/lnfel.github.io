@@ -3,14 +3,14 @@
     import { afterNavigate } from "$app/navigation"
 
     afterNavigate(async (navigation) => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'instant'
-        })
-        const section = document.querySelector('section')
-        if (section) {
-            section.classList.remove('hidden-village')
-        }
+        // window.scrollTo({
+        //     top: document.body.scrollHeight,
+        //     behavior: 'instant'
+        // })
+        // const section = document.querySelector('section')
+        // if (section && section.classList.contains('hidden-village')) {
+        //     section.classList.remove('hidden-village')
+        // }
     })
 
     /** @type {any} */
@@ -19,6 +19,33 @@
     onMount(async () => {
         html2pdf = (await import('html2pdf.js')).default
         const pdfElement = document.querySelector('section .section-content')
+        const section = document.querySelector('section')
+        if (section && section.classList.contains('hidden-village')) {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'instant'
+            })
+            section.classList.remove('hidden-village')
+        }
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+            const sectionContents = document.querySelectorAll('.section-content div')
+            sectionContents.forEach((element) => {
+                element.animate(
+                    {
+                        opacity: [0, 1]
+                    },
+                    {
+                        fill: 'forwards',
+                        duration: 300,
+                        delay: 1500
+                    }
+                )
+            })
+        }, 2000)
         // html2pdf(pdfElement)
     })
 
@@ -85,7 +112,8 @@
                     <h1 class="font-zenless-title text-3xl md:text-5xl leading-none whitespace-nowrap">
                         Dale Ryan Aldover
                     </h1>
-                    <span class="font-zenless-copy md:text-2xl uppercase tracking-[0.6em] leading-none whitespace-nowrap">
+                    <!-- tracking-[0.6em] -->
+                    <span class="font-zenless-copy md:text-2xl uppercase leading-none whitespace-nowrap">
                         Web Developer
                     </span>
                 </div>

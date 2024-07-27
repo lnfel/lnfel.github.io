@@ -17,28 +17,6 @@
         })
     })
 
-    onMount(() => {
-        setTimeout(() => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            })
-            const sectionContents = document.querySelectorAll('.section-content div')
-            sectionContents.forEach((element) => {
-                element.animate(
-                    {
-                        opacity: [0, 1]
-                    },
-                    {
-                        fill: 'forwards',
-                        duration: 300,
-                        delay: 1500
-                    }
-                )
-            })
-        }, 2000)
-    })
-
     function toggleMenu() {
         const nav = document.querySelector('.menu-container')
         if (nav) {

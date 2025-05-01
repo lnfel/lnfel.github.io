@@ -88,9 +88,11 @@ export function navigateToHash({ scrollElement }) {
 
         // toggle nav container on small screens
         const nav = document.querySelector('.menu-container')
+        const stellarContainer = document.querySelector(".stellar-container")
         const mediumScreen = window.matchMedia("(min-width: 768px)")
-        if (nav && !mediumScreen.matches) {
+        if (nav && stellarContainer && !mediumScreen.matches) {
             classToggle(nav, "show")
+            classToggle(stellarContainer, "sticky top-0")
         }
 
         // scroll and append history

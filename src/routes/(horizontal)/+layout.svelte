@@ -14,8 +14,10 @@
     
     function toggleMenu() {
         const nav = document.querySelector('.menu-container')
-        if (nav) {
+        const stellarContainer = document.querySelector(".stellar-container")
+        if (nav && stellarContainer) {
             classToggle(nav, "show")
+            classToggle(stellarContainer, "sticky top-0")
         }
     }
 

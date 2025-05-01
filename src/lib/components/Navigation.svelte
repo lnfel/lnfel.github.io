@@ -155,7 +155,7 @@
     })
 </script>
 
-<div class="stellar-container fixed inset-0 md:relative w-screen h-[100dvh] overflow-hidden shrink-0 z-20">
+<div class="stellar-container absolute md:relative w-screen h-[100dvh] overflow-hidden shrink-0 z-20">
     <div class="stellar-bg h-full relative">
         <div class="stellar-colored"></div>
         <!-- <img src="/img/ui/stellar-bg/grayscale.webp" alt="" class="stellar-grayscale hidden md:block"> -->
@@ -184,7 +184,8 @@
     }
     .stellar-container {
         opacity: 0;
-        transition: 300ms opacity 500ms ease-in-out;
+        /* Prevent user from seeing the page body scrolling as the container toggles visibility */
+        /* transition: 300ms opacity 500ms ease-in-out; */
     }
     :global(.stellar-container:not(:has(.menu-container.show))) {
         pointer-events: none;
@@ -204,7 +205,8 @@
     }
     .stellar-container:has(.menu-container.show) {
         opacity: 1;
-        transition: all 200ms ease-in-out;
+        /* Prevent user from seeing the page body scrolling as the container toggles visibility */
+        /* transition: all 200ms ease-in-out; */
     }
     /* .stellar-grayscale {
         width: 100%;

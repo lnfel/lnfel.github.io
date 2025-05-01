@@ -131,9 +131,9 @@
 
 <svelte:body use:classList={"bg-indigo-50 dark:bg-slate-900 md:overflow-hidden scroll-smooth"}/>
 
-<Header class="bg-slate-900/50">
-    <button on:click={toggleMenu} type="button" class="md:hidden text-tulip-tree-400 outline-none hover:bg-tulip-tree-400 focus:bg-tulip-tree-400 hover:text-slate-900 focus:text-slate-900 transition-colors p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+<Header class="bg-indigo-50/20 dark:bg-slate-900/50">
+    <button on:click={toggleMenu} type="button" class="md:hidden text-tulip-tree-400 outline-none rounded border-2 border-transparent focus:border-slate-900 hover:text-slate-900 focus:text-slate-900 dark:hover:text-tulip-tree-400 dark:focus:text-tulip-tree-400 dark:focus:border-tulip-tree-400 transition-colors p-0.5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu w-10 h-10"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         <span class="sr-only">Toggle menu</span>
     </button>
 </Header>

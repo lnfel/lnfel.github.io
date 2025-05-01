@@ -192,9 +192,10 @@
     .stellar-colored {
         position: absolute;
         inset: 0;
-        background: radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
+        background: linear-gradient(to bottom, transparent 80%, theme(colors.indigo.50) 100%),
+            radial-gradient(transparent 0.75px, theme(colors.indigo.50 / 0.3) 0.75px),
             url('/img/ui/stellar-bg/stellar-stellar.webp');
-        background-size: 4px 4px, cover;
+        background-size: cover;
         backdrop-filter: saturate(50%) blur(4px);
         background-position: bottom left;
         pointer-events: none;
@@ -242,6 +243,15 @@
         transition: 500ms grid-template-rows 300ms linear;
     }
 
+    @media (prefers-color-scheme: dark) {
+        .stellar-colored {
+            background: linear-gradient(to bottom, transparent 80%, rgb(15 23 42 / 1) 100%),
+                radial-gradient(transparent 0.75px, rgb(15 23 42 / 0.5) 0.75px),
+                url('/img/ui/stellar-bg/stellar-stellar.webp');
+            background-size: cover;
+        }
+    }
+
     @media (min-width: 768px) {
         .menu-container {
             grid-template-rows: 1fr;
@@ -253,9 +263,10 @@
             pointer-events: all;
         }
         .stellar-colored {
-            background: radial-gradient(transparent 0.75px, theme(colors.indigo.50 / 0.2) 0.75px),
+            background: linear-gradient(to right, transparent 80%, theme(colors.indigo.50) 100%),
+                radial-gradient(transparent 0.75px, theme(colors.indigo.50 / 0.3) 0.75px),
                 url('/img/ui/stellar-bg/stellar-stellar.webp');
-            background-size: 4px 4px, cover;
+            background-size: cover;
             backdrop-filter: saturate(50%) blur(4px);
             background-position: bottom left;
 

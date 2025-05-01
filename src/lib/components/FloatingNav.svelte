@@ -102,24 +102,48 @@
      */
     @property --transparent {
         syntax: '<color>';
-        initial-value: #ffffff;
+        initial-value: #000000;
         inherits: false;
     }
     @property --color-1 {
         syntax: '<color>';
-        initial-value: #ffffff;
+        initial-value: #000000;
         inherits: false;
     }
     @property --color-2 {
         syntax: '<color>';
-        initial-value: #ffffff;
+        initial-value: #000000;
         inherits: false;
     }
     @property --color-3 {
         syntax: '<color>';
-        initial-value: #ffffff;
+        initial-value: #000000;
         inherits: false;
     }
+
+    @media (prefers-color-scheme: dark) {
+        @property --transparent {
+            syntax: '<color>';
+            initial-value: #ffffff;
+            inherits: false;
+        }
+        @property --color-1 {
+            syntax: '<color>';
+            initial-value: #ffffff;
+            inherits: false;
+        }
+        @property --color-2 {
+            syntax: '<color>';
+            initial-value: #ffffff;
+            inherits: false;
+        }
+        @property --color-3 {
+            syntax: '<color>';
+            initial-value: #ffffff;
+            inherits: false;
+        }
+    }
+    
     .floating-nav-link {
         --gradient-gap: 1px;
         transform: translateY(30%);

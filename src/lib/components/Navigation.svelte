@@ -265,7 +265,7 @@
             pointer-events: all;
         }
         .stellar-colored {
-            background: linear-gradient(to right, transparent 80%, theme(colors.indigo.50) 100%),
+            background: linear-gradient(to right, transparent 50%, theme(colors.indigo.50 / 0.5) 80%, theme(colors.indigo.50) 100%),
                 radial-gradient(transparent 0.75px, theme(colors.indigo.50 / 0.3) 0.75px),
                 url('/img/ui/stellar-bg/stellar-stellar.webp');
             background-size: cover;

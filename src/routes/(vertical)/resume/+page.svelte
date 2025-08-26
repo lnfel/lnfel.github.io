@@ -117,7 +117,7 @@
     <span class="sr-only">Print</span>
 </button>
 
-<section class="hidden-village shrink-0 md:flex px-4 py-6 pt-[9rem] md:p-0 md:pb-56 bg-white text-slate-900">
+<section class="hidden-village shrink-0 md:flex px-4 py-6 pt-[9rem] md:p-0 md:pb-56 bg-white text-slate-900 break-inside-avoid">
     <div class="md:w-[7rem]"></div>
     <div class="backrop">
         <!-- To adjust background image position on print, please tweak print:pb-[Xrem] -->
@@ -168,17 +168,19 @@
                 </div>
             </div>
 
-            <div id="summary" class="md:px-20 space-y-6">
+            <div id="summary" class="md:px-20 space-y-6 break-after-page">
                 <h2 class="w-full font-zenless-title text-2xl md:text-3xl text-sky-500">
                     Summary
                 </h2>
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">
                     Full-stack Web Developer with {yearsPast(new Date('12-01-2018'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. I learned different frameworks along my journey namely, Ruby on Rails, Laravel, and some well known JavaScript frameworks for modern development such as Vue and Svelte.
                 </p>
-                <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">Recently made <LinkPreview href="https://github.com/lnfel/aerial/" title="Aerial" image="{base}/img/resume/aerial-preview.png" description="Aerial is an sveltekit application that extracts dominant colors from images and documents." class="text-indigo-500 hover:underline focus:underline"><span>Aerial</span></LinkPreview>, an sveltekit app that extracts dominant colors in documents, pdf and images using k-means clustering. During free time I tinker with Three js framework or get news on latest hapennings in web development space.</p>
+                <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">On my previous project I made <LinkPreview href="https://github.com/lnfel/aerial/" title="Aerial" image="{base}/img/resume/aerial-preview.png" description="Aerial is an sveltekit application that extracts dominant colors from images and documents." class="text-indigo-500 hover:underline focus:underline"><span>Aerial</span></LinkPreview>, an sveltekit app that extracts dominant colors in documents, pdf and images using k-means clustering.</p>
+                <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">Author of <LinkPreview href="https://github.com/lnfel/irozuku" title="Irozuku" description="Elegant terminal styling in ruby." class="text-indigo-500 hover:underline focus:underline" image="https://raw.githubusercontent.com/lnfel/irozuku/main/rdoc/assets/images/irozuku.png">Irozuku</LinkPreview>, a terminal styling library written in Ruby. I never got the time to truly understand Ruby language as a developer when I started. My aim is to trace back my footsteps and learn one of the most-loved language while contributing to the community.</p>
+                <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">Inspired and fascinated by UI and UX design in <a href="https://zenless.hoyoverse.com" class="text-indigo-500 hover:underline focus:underline" target="_blank">games</a>, I explore ways of giving users a wonderful experience without sacrificing accessibility and usability of applications.</p>
             </div>
 
-            <div id="notable-projects" class="md:px-20 space-y-6">
+            <div id="notable-projects" class="md:px-20 space-y-6 break-after-page">
                 <h2 class="w-full font-zenless-title text-2xl md:text-3xl text-sky-500">
                     Notable Projects
                 </h2>
@@ -240,6 +242,16 @@
                             </LinkPreview>
                             <p class="hidden print:block text-xs">Reverse 1999 Mane's Bulletin Global Leaderboard for global server.</p>
                         </li>
+                        <li>
+                            <LinkPreview href="https://github.com/lnfel/irozuku" title="Irozuku" description="Elegant terminal styling in ruby." image="https://raw.githubusercontent.com/lnfel/irozuku/main/rdoc/assets/images/irozuku.png" class="flex items-center gap-2 leading-none">
+                                <img src="https://raw.githubusercontent.com/lnfel/irozuku/main/rdoc/assets/images/irozuku.png" alt="Irozuku logo" height="40" class="h-10">
+                                <div class="flex flex-col">
+                                    <span>Irozuku</span>
+                                    <span class="text-xs font-light">github.com/lnfel/irozuku</span>
+                                </div>
+                            </LinkPreview>
+                            <p class="hidden print:block text-xs">Elegant terminal styling in ruby.</p>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -249,6 +261,21 @@
                     Recent Work
                 </h2>
                 <ul class="font-zenless-copy text-pretty max-w-[80ch] space-y-8">
+                    <li class="space-y-2 break-inside-avoid">
+                        <div class="font-zenless-title text-xl">
+                            App/Cloud Support Senior Analyst
+                        </div>
+                        <p class="text-lg text-indigo-600">
+                            Accenture (Mar 2025 – Present)
+                        </p>
+                        <ul class="list-disc pl-6">
+                            <li>Worked with an Independent Regulatory board based in Australia in maintaining and enhancing their existing online platform</li>
+                            <li>Implemented custom tailored features for Reporting which includes custom UI interactions and exporting data in specific formats</li>
+                            <li>Collaborated with Regulatory board's internal team in meeting SLA both in timely fashion and quality</li>
+                            <li>Acted as PMO during a transition period and worked closely with ACN and Client's management members to ensure a successful transition of the project</li>
+                        </ul>
+                    </li>
+
                     <li class="space-y-2 break-inside-avoid">
                         <div class="font-zenless-title text-xl">
                             Full-stack Developer

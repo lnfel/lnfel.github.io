@@ -2,10 +2,13 @@
 	import { onMount } from "svelte"
     import { afterNavigate } from "$app/navigation"
     import { base } from "$app/paths"
+    import { resume } from "$lib/content/resume"
 
     import LinkPreview from "$lib/components/LinkPreview.svelte"
+    import WorkHistory from "$lib/components/WorkHistory.svelte"
 
     let introAnimation = 'enabled'
+    let totalMonths = 0
 
     afterNavigate(async (navigation) => {
         // window.scrollTo({
@@ -39,7 +42,12 @@
                     behavior: 'smooth'
                 })
                 const sectionContents = document.querySelectorAll('.section-content div')
-                sectionContents.forEach((element) => {
+                const sections = Array.from(sectionContents)
+                const logoText = document.querySelector(".logo-text")
+                const printBtn = document.querySelector(".print-btn")
+                if (logoText) sections.push(logoText);
+                if (printBtn) sections.push(printBtn);
+                sections.forEach((element) => {
                     element.animate(
                         {
                             opacity: [0, 1]
@@ -63,6 +71,30 @@
         }
         
         // html2pdf(pdfElement)
+
+        /**
+         * Calculate actual working years based on work history
+         */
+        // const workHistories = /** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll('.work-history'))
+        // workHistories.forEach((workHistory) => {
+        //     const startDateElement = /** @type {HTMLTimeElement | null} */ (workHistory.querySelector('.start-date'))
+        //     const endDateElement = /** @type {HTMLTimeElement | null} */ (workHistory.querySelector('.end-date'))
+        //     if (startDateElement && endDateElement) {
+        //         const startDate = new Date(startDateElement.dateTime)
+        //         const endDate = new Date(endDateElement.dateTime)
+        //         const months = monthsPast(startDate, endDate)
+        //         totalMonths += months
+        //         const monthText = months > 1 ? 'months' : 'month'
+        //         const years = Math.floor(months / 12)
+        //         const yearText = years > 1 ? 'years' : 'year'
+        //         const durationText = years > 0 ? `${years} ${yearText}` : ''
+        //         const durationTextWithMonths = years > 0 ? (months % 12 > 0 ? `${durationText} and ${months % 12} ${monthText}` : durationText) : `${months} ${monthText}`
+        //         const durationSpan = document.createElement('span')
+        //         durationSpan.classList.add('duration', 'whitespace-nowrap')
+        //         durationSpan.textContent = ` | ${durationTextWithMonths}`
+        //         endDateElement.insertAdjacentElement('afterend', durationSpan)
+        //     }
+        // })
     })
 
     /**
@@ -81,13 +113,18 @@
     }
 
     /**
+     * Calculate number of months between two dates while adjusting for days
+     * 
      * @param {Date} startDate
-     * @param {Date} currentDate
+     * @param {Date} endDate
      */
-    function monthsPast(startDate, currentDate) {
-        const yearsPast = currentDate.getFullYear() - startDate.getFullYear()
-        console.log(yearsPast)
-        return Number(((yearsPast * 12) + (startDate.getMonth() - currentDate.getMonth())) / 12).toFixed()
+    function monthsPast(startDate, endDate) {
+        const yearsPast = endDate.getFullYear() - startDate.getFullYear()
+        let monthsPast = (yearsPast * 12) + (endDate.getMonth() - startDate.getMonth())
+        if (endDate.getDate() < startDate.getDate()) {
+            monthsPast--;
+        }
+        return monthsPast
     }
 
     async function print() {
@@ -112,7 +149,7 @@
 <!-- https://alistapart.com/article/boom/ -->
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <!-- on:mouseover={test} -->
-<button on:click={() => window.print()} type="button" class="fixed bottom-4 md:bottom-auto md:top-4 right-4 z-30 bg-slate-400 text-white rounded outline-none hover:bg-tulip-tree-400 focus:bg-tulip-tree-400 p-2">
+<button on:click={() => window.print()} type="button" class="print-btn fixed bottom-4 md:bottom-auto md:top-4 right-4 z-30 bg-slate-400 text-white rounded outline-none hover:bg-tulip-tree-400 focus:bg-tulip-tree-400 p-2">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-printer pointer-events-none"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
     <span class="sr-only">Print</span>
 </button>
@@ -172,15 +209,16 @@
                 <h2 class="w-full font-zenless-title text-2xl md:text-3xl text-sky-500">
                     Summary
                 </h2>
+                <!-- (actual work is {Math.floor(totalMonths / 12)} years) -->
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">
-                    Full-stack Web Developer with {yearsPast(new Date('12-01-2018'), new Date())} years of progressive experience. Started web development as a hobby in 2007 and in 2019 I finally decided to have it as my career. I learned different frameworks along my journey namely, Ruby on Rails, Laravel, and some well known JavaScript frameworks for modern development such as Vue and Svelte.
+                    Full-stack Web Developer with <span class="years-of-experience">{yearsPast(new Date('12-01-2018'), new Date())}</span> years of progressive experience. Started web development as a hobby way back in 2007 and in 2018 I finally decided to have it as my career. I learned different frameworks along my journey namely, Ruby on Rails, Laravel, and some well known JavaScript frameworks for modern development such as Vue and Svelte.
                 </p>
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">On my previous project I made <LinkPreview href="https://github.com/lnfel/aerial/" title="Aerial" image="{base}/img/resume/aerial-preview.png" description="Aerial is an sveltekit application that extracts dominant colors from images and documents." class="text-indigo-500 hover:underline focus:underline"><span>Aerial</span></LinkPreview>, an sveltekit app that extracts dominant colors in documents, pdf and images using k-means clustering.</p>
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">Author of <LinkPreview href="https://github.com/lnfel/irozuku" title="Irozuku" description="Elegant terminal styling in ruby." class="text-indigo-500 hover:underline focus:underline" image="https://raw.githubusercontent.com/lnfel/irozuku/main/rdoc/assets/images/irozuku.png">Irozuku</LinkPreview>, a terminal styling library written in Ruby. I never got the time to truly understand Ruby language as a developer when I started. My aim is to trace back my footsteps and learn one of the most-loved language while contributing to the community.</p>
                 <p class="font-zenless-copy text-xl text-pretty leading-normal max-w-[60ch]">Inspired and fascinated by UI and UX design in <a href="https://zenless.hoyoverse.com" class="text-indigo-500 hover:underline focus:underline" target="_blank">games</a>, I explore ways of giving users a wonderful experience without sacrificing accessibility and usability of applications.</p>
             </div>
 
-            <div id="notable-projects" class="md:px-20 space-y-6 break-after-page">
+            <div id="notable-projects" class="page-start md:px-20 space-y-6 break-after-page">
                 <h2 class="w-full font-zenless-title text-2xl md:text-3xl text-sky-500">
                     Notable Projects
                 </h2>
@@ -256,106 +294,14 @@
                 </div>
             </div>
 
-            <div id="recent-work" class="md:px-20 space-y-6">
+            <div id="recent-work" class="page-start md:px-20 space-y-6">
                 <h2 class="w-full font-zenless-title text-2xl md:text-3xl text-sky-500">
                     Recent Work
                 </h2>
                 <ul class="font-zenless-copy text-pretty max-w-[80ch] space-y-8">
-                    <li class="space-y-2 break-inside-avoid">
-                        <div class="font-zenless-title text-xl">
-                            App/Cloud Support Senior Analyst
-                        </div>
-                        <p class="text-lg text-indigo-600">
-                            Accenture (Mar 2025 – Present)
-                        </p>
-                        <ul class="list-disc pl-6">
-                            <li>Worked with an Independent Regulatory board based in Australia in maintaining and enhancing their existing online platform</li>
-                            <li>Implemented custom tailored features for Reporting which includes custom UI interactions and exporting data in specific formats</li>
-                            <li>Collaborated with Regulatory board's internal team in meeting SLA both in timely fashion and quality</li>
-                            <li>Acted as PMO during a transition period and worked closely with ACN and Client's management members to ensure a successful transition of the project</li>
-                        </ul>
-                    </li>
-
-                    <li class="space-y-2 break-inside-avoid">
-                        <div class="font-zenless-title text-xl">
-                            Full-stack Developer
-                        </div>
-                        <p class="text-lg text-indigo-600">
-                            PingSailor (Jul 2022 – Mar 2024)
-                        </p>
-                        <ul class="list-disc pl-6">
-                            <li>Implemented Integrations Page on the existing PingSailor website that was done using Laravel and Vue.js stack</li>
-                            <li>Built an API for managing Blog content</li>
-                            <li>Implemented Secure Authentication for Blog Editor</li>
-                            <li>Improved Lighthouse score to 90 by implementing optimization patterns and best practices</li>
-                            <li>Implemented Continuous Integration and Delivery using Github Actions</li>
-                            <li>Pioneered the company's second project called Ghostprinter, where I made an internal service I called Aerial that extracts dominant colors in images, and documents (mainly docx and pdf files). Rendered using Sveltekit</li>
-                            <li>Implemented Ghostprinter back-end API using <a href="https://elysiajs.com/" class="text-link">ElysiaJS</a>, where I got a chance to be invited as one of the community ambassadors.</li>
-                            <li>Aerial is publicly available: <a href="https://github.com/lnfel/aerial" class="text-link">https://github.com/lnfel/aerial</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="page-start space-y-2 break-inside-avoid">
-                        <div class="font-zenless-title text-xl">
-                            Laravel Full-stack Developer
-                        </div>
-                        <p class="text-lg text-indigo-600">
-                            RGMTSI (Mar 2021 – Jan 2022)
-                        </p>
-                        <ul class="list-disc pl-6">
-                            <li>Built the company website from scratch using TALL (Tailwind, Alpinejs, Laravel, and Livewire) stack and Postgresql as production database</li>
-                            <li>The web app is a CMS which is developer independent and can be customised by a non-developer staff</li>
-                            <li>Implemented SEO (Search Engine Optimization) using Google Search Console and a combination of data structure implementation, mainly JSON-LD and RDFa</li>
-                            <li>Implemented automation for various tasks needed for development</li>
-                            <li>Implemented Continuous Integration and Delivery using Github Actions</li>
-                            <li>RGMTSI site at: <a href="https://rgmtsinc.com">https://rgmtsinc.com</a></li>
-                            <li>Repo is available publicly at: <a href="https://github.com/lnfel/rgmtsi-lamy" class="text-link">https://github.com/lnfel/rgmtsi-lamy</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="space-y-2 break-inside-avoid">
-                        <div class="font-zenless-title text-xl">
-                            Ruby on Rails Full-stack Developer
-                        </div>
-                        <p class="text-lg text-indigo-600">
-                            Editmode (Aug 2020 – Nov 2020)
-                        </p>
-                        <ul class="list-disc pl-6">
-                            <li>Implemented Algolia search on existing Rails 4 app while working with a team of three to complete various improvements of the said app</li>
-                            <li>Written a chrome extension to consume Atlas api, another project of Editmode similar to "Save to Pocket" chrome extension</li>
-                            <li>Written another chrome extension that toggles seen tweets on Twitter, a pet project of my employer for personal use</li>
-                            <li>Editmode site: <a href="https://editmode.com" class="text-link">https://editmode.com</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="space-y-2 break-inside-avoid">
-                        <div class="font-zenless-title text-xl">
-                            Ruby on Rails Full-stack Developer
-                        </div>
-                        <p class="text-lg text-indigo-600">
-                            Semprove (Jul 2019 – Mar 2020)
-                        </p>
-                        <ul class="list-disc pl-6">
-                            <li>Re-built an old Rails up to modern standards</li>
-                            <li>Implemented features to enhance overall user experience</li>
-                            <li>Live development url: <a href="https://supost-test.herokuapp.com" class="text-link">https://supost-test.herokuapp.com</a> (Down ever since heroku removed their free-tier)</li>
-                        </ul>
-                    </li>
-
-                    <li class="page-start space-y-2 break-inside-avoid">
-                        <div class="font-zenless-title text-xl">
-                            PHP Developer
-                        </div>
-                        <p class="text-lg text-indigo-600">
-                            Mango System (Dec 2018 – Apr 2019)
-                        </p>
-                        <ul class="list-disc pl-6">
-                            <li>Developed a CRM with DataTables Framework</li>
-                            <li>Lead a team of developers for a pioneering project</li>
-                            <li>Made company profile websites for the company’s clients</li>
-                            <li>Sample of our work: <a href="https://lnfel.github.io/Vasta" class="text-link">https://lnfel.github.io/Vasta</a></li>
-                        </ul>
-                    </li>
+                    {#each resume as workHistory}
+                        <WorkHistory {workHistory} class={workHistory.className} />
+                    {/each}
                 </ul>
             </div>
 
@@ -415,7 +361,9 @@
         opacity: 0;
         background-position: top left, left 102%;
     }
-    .section-content div {
+    .section-content div,
+    :global(.logo-text),
+    .print-btn {
         opacity: 0;
     }
     /* .backrop {
@@ -423,10 +371,10 @@
         border-radius: 1.5rem;
         overflow: hidden;
     } */
-    li a.text-link {
+    :global(li a.text-link) {
         @apply text-emerald-600;
     }
-    a.text-link {
+    :global(a.text-link) {
         @apply hover:underline focus:underline;
     }
     /* :global(.section-content footer) {
@@ -474,7 +422,7 @@
         /* .backdrop-blur-sm {
             backdrop-filter: none;
         } */
-        .page-start {
+        :global(.page-start) {
             padding-top: 5rem;
         }
     }
